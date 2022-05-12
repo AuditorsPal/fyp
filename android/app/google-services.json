@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1097117992472",
+    "project_id": "auditorpalsfyp",
+    "storage_bucket": "auditorpalsfyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097117992472:android:0eea0d0a6dce0bff19a56d",
+        "android_client_info": {
+          "package_name": "com.example.auditorpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097117992472-batja3241ug999qqb9c52jalngkpkkgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaBu1ChrihZ6N-7yAzb9GGwnuz7Dq7s_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097117992472-batja3241ug999qqb9c52jalngkpkkgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
