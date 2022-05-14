@@ -1,174 +1,221 @@
 import 'package:flutter/material.dart';
-
-class myRegister extends StatefulWidget {
-  const myRegister({Key? key}) : super(key: key);
+import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+// import 'package:auditorpal/controlller/authenticationService.dart';
+class MyRegister extends StatefulWidget {
+  final String userType;
+  const MyRegister({Key? key, required this.userType}) : super(key: key);
 
   @override
-  _myRegisterState createState() => _myRegisterState();
+  _MyRegisterState createState() => _MyRegisterState();
 }
 
-class _myRegisterState extends State<myRegister> {
+class _MyRegisterState extends State<MyRegister> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/login.png',
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Scaffold(
-          appBar: AppBar(
-              elevation: null,
-              backgroundColor: Colors.transparent,
-              leading: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'login');
-                },
-                child: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  color: Colors.white,
-                ),
-              )),
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('assets/images/register.png'), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
           backgroundColor: Colors.transparent,
-          body: Stack(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'REGISTER\n NOW',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40.0,
-                    ),
-                  ),
-                ],
+          elevation: 0,
+        ),
+        body: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 35, top: 30),
+              child: Text(
+                'Create\nAccount',
+                style: TextStyle(color: Colors.white, fontSize: 33),
               ),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28,
-                    left: 35,
-                    right: 35,
-                  ),
-                  child: Column(
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Username',
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(
-                                color: Colors.white,
-                              )),
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          labelText: 'Email',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      TextField(
-                        decoration: InputDecoration(
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          labelText: 'Phone',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          fillColor: Colors.transparent,
-                          filled: true,
-                          labelText: 'Password',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            borderSide: const BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 30.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+            ),
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.28),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 35, right: 35),
+                      child: Column(
                         children: [
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                maximumSize: const Size(170.0, 90.0),
-                                minimumSize: const Size(170.0, 60.0),
-                                primary: Colors.black,
-                                shape: const StadiumBorder(),
-                              ),
-                              onPressed: () {},
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                //crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text('REGISTER'),
-                                  Icon(
-                                    Icons.content_paste_rounded,
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: emailController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
                                     color: Colors.white,
                                   ),
-                                ],
-                              )),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Email",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
+                            controller: passwordController,
+                            style: TextStyle(color: Colors.white),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Password",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                              // CircleAvatar(
+                              //   radius: 30,
+                              //   backgroundColor: Color(0xff4c505b),
+                              //   child: IconButton(
+                              //       color: Colors.white,
+                              //       onPressed: () async {
+                              //         Loader.show(context,
+                              //             progressIndicator:
+                              //                 CircularProgressIndicator());
+                              //         String? response = await context
+                              //             .read<AuthenticationService>()
+                              //             .signUp(
+                              //               email: emailController.text.trim(),
+                              //               password:
+                              //                   passwordController.text.trim(),
+                              //             );
+                              //         if (response == "Signed up") {
+                              //           Loader.hide();
+                              //           String? response;
+                              //           if (widget.userType == "user") {
+                              //             response = await WriteService.addUser(
+                              //                 email:
+                              //                     emailController.text.trim());
+                              //           } else {
+                              //             response =
+                              //                 await WriteService.addOrganizer(
+                              //                     email: emailController.text
+                              //                         .trim());
+                              //           }
+
+                              //           if (response == '1') {
+                              //             Navigator.pop(
+                              //                 context, 'Account created');
+                              //           } else {
+                              //             MotionToast.error(
+                              //               title: const Text(
+                              //                 'Error',
+                              //                 style: TextStyle(
+                              //                   fontWeight: FontWeight.bold,
+                              //                 ),
+                              //               ),
+                              //               description: const Text(
+                              //                   'Something went wrong'),
+                              //               animationType: ANIMATION.fromLeft,
+                              //               position: MOTION_TOAST_POSITION.top,
+                              //               barrierColor:
+                              //                   Colors.black.withOpacity(0.3),
+                              //               width: 300,
+                              //               dismissable: true,
+                              //             ).show(context);
+                              //           }
+                              //         } else {
+                              //           Loader.hide();
+                              //           MotionToast.error(
+                              //             title: const Text(
+                              //               'Error',
+                              //               style: TextStyle(
+                              //                 fontWeight: FontWeight.bold,
+                              //               ),
+                              //             ),
+                              //             description: const Text(
+                              //                 'Please enter correct email and address'),
+                              //             animationType: ANIMATION.fromLeft,
+                              //             position: MOTION_TOAST_POSITION.top,
+                              //             barrierColor:
+                              //                 Colors.black.withOpacity(0.3),
+                              //             width: 300,
+                              //             dismissable: false,
+                              //           ).show(context);
+                              //         }
+                              //       },
+                              //       icon: Icon(
+                              //         Icons.arrow_forward,
+                              //       )),
+                              // )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, 'login');
+                                },
+                                child: Text(
+                                  'Sign In',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.white,
+                                      fontSize: 18),
+                                ),
+                                style: ButtonStyle(),
+                              ),
+                            ],
+                          )
                         ],
                       ),
-                      SizedBox(height: 30.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, 'login');
-                            },
-                            child: Text(
-                              'Login',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, 'forgot');
-                            },
-                            child: Text(
-                              'Forgot password?',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
