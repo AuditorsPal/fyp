@@ -6,7 +6,7 @@ class WriteService {
   static Future<String?> addUser({required String email}) async {
     final user = <String, dynamic>{"email": email};
     try {
-      await db.collection("users").add(user);
+      await db.collection("Auditors").add(user);
       return "1";
     } on FirebaseException catch (e) {
       return e.message;
@@ -16,7 +16,7 @@ class WriteService {
   static Future<String?> addOrganizer({required String email}) async {
     final org = <String, dynamic>{"email": email};
     try {
-      await db.collection("organizers").add(org);
+      await db.collection("Organization").add(org);
       return "1";
     } on FirebaseException catch (e) {
       return e.message;

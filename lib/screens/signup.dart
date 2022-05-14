@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
-// import 'package:auditorpal/controlller/authenticationService.dart';
+import 'package:auditorpal/controlller/authenticationService.dart';
+import 'package:auditorpal/controlller/writeService.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
+import 'package:provider/provider.dart';
+
 class MyRegister extends StatefulWidget {
   final String userType;
   const MyRegister({Key? key, required this.userType}) : super(key: key);
@@ -109,81 +114,81 @@ class _MyRegisterState extends State<MyRegister> {
                                     fontSize: 27,
                                     fontWeight: FontWeight.w700),
                               ),
-                              // CircleAvatar(
-                              //   radius: 30,
-                              //   backgroundColor: Color(0xff4c505b),
-                              //   child: IconButton(
-                              //       color: Colors.white,
-                              //       onPressed: () async {
-                              //         Loader.show(context,
-                              //             progressIndicator:
-                              //                 CircularProgressIndicator());
-                              //         String? response = await context
-                              //             .read<AuthenticationService>()
-                              //             .signUp(
-                              //               email: emailController.text.trim(),
-                              //               password:
-                              //                   passwordController.text.trim(),
-                              //             );
-                              //         if (response == "Signed up") {
-                              //           Loader.hide();
-                              //           String? response;
-                              //           if (widget.userType == "user") {
-                              //             response = await WriteService.addUser(
-                              //                 email:
-                              //                     emailController.text.trim());
-                              //           } else {
-                              //             response =
-                              //                 await WriteService.addOrganizer(
-                              //                     email: emailController.text
-                              //                         .trim());
-                              //           }
+                              CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xff4c505b),
+                                child: IconButton(
+                                    color: Colors.white,
+                                    onPressed: () async {
+                                      Loader.show(context,
+                                          progressIndicator:
+                                              CircularProgressIndicator());
+                                      String? response = await context
+                                          .read<AuthenticationService>()
+                                          .signUp(
+                                            email: emailController.text.trim(),
+                                            password:
+                                                passwordController.text.trim(),
+                                          );
+                                      if (response == "Signed up") {
+                                        Loader.hide();
+                                        String? response;
+                                        if (widget.userType == "user") {
+                                          response = await WriteService.addUser(
+                                              email:
+                                                  emailController.text.trim());
+                                        } else {
+                                          response =
+                                              await WriteService.addOrganizer(
+                                                  email: emailController.text
+                                                      .trim());
+                                        }
 
-                              //           if (response == '1') {
-                              //             Navigator.pop(
-                              //                 context, 'Account created');
-                              //           } else {
-                              //             MotionToast.error(
-                              //               title: const Text(
-                              //                 'Error',
-                              //                 style: TextStyle(
-                              //                   fontWeight: FontWeight.bold,
-                              //                 ),
-                              //               ),
-                              //               description: const Text(
-                              //                   'Something went wrong'),
-                              //               animationType: ANIMATION.fromLeft,
-                              //               position: MOTION_TOAST_POSITION.top,
-                              //               barrierColor:
-                              //                   Colors.black.withOpacity(0.3),
-                              //               width: 300,
-                              //               dismissable: true,
-                              //             ).show(context);
-                              //           }
-                              //         } else {
-                              //           Loader.hide();
-                              //           MotionToast.error(
-                              //             title: const Text(
-                              //               'Error',
-                              //               style: TextStyle(
-                              //                 fontWeight: FontWeight.bold,
-                              //               ),
-                              //             ),
-                              //             description: const Text(
-                              //                 'Please enter correct email and address'),
-                              //             animationType: ANIMATION.fromLeft,
-                              //             position: MOTION_TOAST_POSITION.top,
-                              //             barrierColor:
-                              //                 Colors.black.withOpacity(0.3),
-                              //             width: 300,
-                              //             dismissable: false,
-                              //           ).show(context);
-                              //         }
-                              //       },
-                              //       icon: Icon(
-                              //         Icons.arrow_forward,
-                              //       )),
-                              // )
+                                        if (response == '1') {
+                                          Navigator.pop(
+                                              context, 'Account created');
+                                        } else {
+                                          MotionToast.error(
+                                            title: const Text(
+                                              'Error',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            description: const Text(
+                                                'Something went wrong'),
+                                            animationType: ANIMATION.fromLeft,
+                                            position: MOTION_TOAST_POSITION.top,
+                                            barrierColor:
+                                                Colors.black.withOpacity(0.3),
+                                            width: 300,
+                                            dismissable: true,
+                                          ).show(context);
+                                        }
+                                      } else {
+                                        Loader.hide();
+                                        MotionToast.error(
+                                          title: const Text(
+                                            'Error',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          description: const Text(
+                                              'Please enter correct email and address'),
+                                          animationType: ANIMATION.fromLeft,
+                                          position: MOTION_TOAST_POSITION.top,
+                                          barrierColor:
+                                              Colors.black.withOpacity(0.3),
+                                          width: 300,
+                                          dismissable: false,
+                                        ).show(context);
+                                      }
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_forward,
+                                    )),
+                              )
                             ],
                           ),
                           SizedBox(
