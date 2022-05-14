@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/login.dart';
 import 'package:auditorpal/screens/signup.dart';
 import 'package:auditorpal/screens/resetpass.dart';
+import 'package:auditorpal/screens/profile.dart';
 
 void main() {
   runApp(
@@ -13,6 +14,7 @@ void main() {
         'login': (context) => myLogin(),
         'register': (context) => myRegister(),
         'forgot': (context) => resetPassword(),
+        'profile': (context) => profile(),
       },
     ),
   );
