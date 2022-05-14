@@ -6,7 +6,7 @@ import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
-
+import 'signup.dart';
 import '../model/userModel.dart';
 
 class MyLogin extends StatefulWidget {
@@ -163,16 +163,19 @@ class _MyLoginState extends State<MyLogin> {
                               children: [
                                 TextButton(
                                   onPressed: () async {
-                                    // final result = await Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(builder: (context) =>
-                                    //       MyRegister(userType: widget.userType,)),
-                                    // );
-                                    // if(result!=null) {
-                                    //   ScaffoldMessenger.of(context)
-                                    //   ..removeCurrentSnackBar()
-                                    //   ..showSnackBar(SnackBar(content: Text('$result')));
-                                    // }
+                                    final result = await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MyRegister(
+                                                userType: widget.userType,
+                                              )),
+                                    );
+                                    if (result != null) {
+                                      ScaffoldMessenger.of(context)
+                                        ..removeCurrentSnackBar()
+                                        ..showSnackBar(
+                                            SnackBar(content: Text('$result')));
+                                    }
                                   },
                                   child: const Text(
                                     'Sign Up',
