@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'controlller/authenticationService.dart';
 import 'model/userModel.dart';
 import 'firebase_options.dart';
+import 'screens/profile.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
