@@ -1,10 +1,13 @@
 import 'package:auditorpal/Colors.dart';
 import 'package:auditorpal/model/userModel.dart';
+import 'package:auditorpal/screens/AuditorsViews/AllAuditors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
+import 'AllAuditors.dart';
+import 'MyTickets.dart';
 
 class AuditorHome extends StatefulWidget {
   const AuditorHome({Key? key}) : super(key: key);
@@ -48,6 +51,12 @@ class _AuditorHomeState extends State<AuditorHome> {
                     (_) => false);
               }
             }),
+          ],
+        ),
+        body: const TabBarView(
+          children: [
+            AllAuditors(),
+            MyTickets()
           ],
         ),
       ),
