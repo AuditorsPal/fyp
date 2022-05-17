@@ -4,14 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:auditorpal/Colors.dart';
 
-class AllAuditors extends StatefulWidget {
-  const AllAuditors({Key? key}) : super(key: key);
+class AllProjects extends StatefulWidget {
+  const AllProjects({Key? key}) : super(key: key);
 
   @override
-  State<AllAuditors> createState() => AllAuditors_State();
+  State<AllProjects> createState() => AllProjects_State();
 }
 
-class AllAuditors_State extends State<AllAuditors> {
+class AllProjects_State extends State<AllProjects> {
   late final Stream<QuerySnapshot>? events;
   @override
   void initState() {
