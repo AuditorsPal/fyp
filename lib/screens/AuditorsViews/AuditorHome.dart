@@ -28,6 +28,7 @@ class _AuditorHomeState extends State<AuditorHome> {
         drawer: NavBar(),
 
         appBar: AppBar(
+          centerTitle: true,
           title: const Text("Auditor"),
           backgroundColor: Color.fromARGB(255, 38, 146, 173),
           actions: [

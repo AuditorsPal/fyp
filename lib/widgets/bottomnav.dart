@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
-
+import 'package:auditorpal/screens/AuditorsViews/profile.dart';
 class BottomNavigation extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -22,10 +22,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       "HOLIDAYS",
       style: optionStyle,
     ),
-    Text(
-      "MY PROFILE",
-      style: optionStyle,
-    ),
+   profile(),
   ];
 
   void _onItemTapped(int index) {
