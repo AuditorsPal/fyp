@@ -82,4 +82,14 @@ class ReadService{
       return null;
     }
   }
+
+  static Stream<QuerySnapshot>? readAllAuditors(){
+    try {
+      final result = db.collection("Auditor").snapshots();
+      return result;
+    }
+    on FirebaseException catch (e) {
+      return null;
+    }
+  }
 }
