@@ -126,7 +126,7 @@ class _MyLoginState extends State<MyLogin> {
                                                       widget.userType ==
                                                               "auditor"
                                                           ? AuditorHome()
-                                                          : OrganizerHome()),
+                                                          : OrganizationHome()),
                                               (_) => false);
                                         } else {
                                           Loader.hide();
