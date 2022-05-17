@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:auditorpal/controlller/readService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shimmer/shimmer.dart';
 
 class profile extends StatefulWidget {
   const profile({Key? key}) : super(key: key);
@@ -8,6 +11,13 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  late final Stream<QuerySnapshot>? events;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    events = ReadService.readAllProjects();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

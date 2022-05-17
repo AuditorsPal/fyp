@@ -1,13 +1,16 @@
 import 'package:auditorpal/Colors.dart';
 import 'package:auditorpal/model/userModel.dart';
-import 'package:auditorpal/screens/AuditorsViews/AllAuditors.dart';
+import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
-import 'AllAuditors.dart';
+import 'AllProjects.dart';
 import 'MyTickets.dart';
+import 'package:auditorpal/widgets/bottomnav.dart';
+import 'NavBar.dart';
+import 'SearchPage.dart';
 
 class AuditorHome extends StatefulWidget {
   const AuditorHome({Key? key}) : super(key: key);
@@ -22,16 +25,16 @@ class _AuditorHomeState extends State<AuditorHome> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        drawer: NavBar(),
+
         appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: "Events"),
-              Tab(text: "My Tickets"),
-            ],
-          ),
-          title: const Text("User"),
-          backgroundColor: MyColors.blueColor,
+          title: const Text("Auditor"),
+          backgroundColor: Color.fromARGB(255, 38, 146, 173),
           actions: [
+            IconButton(
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SearchPage())),
+                icon: Icon(Icons.search)),
             PopupMenuButton(
                 // add icon, by default "3 dot" icon
                 // icon: Icon(Icons.book)
@@ -53,12 +56,14 @@ class _AuditorHomeState extends State<AuditorHome> {
             }),
           ],
         ),
-        body: const TabBarView(
-          children: [
-            AllAuditors(),
-            MyTickets()
-          ],
-        ),
+        body: BottomNavigation(),
+
+        // const TabBarView(
+        //   children: [
+        //     AllAuditors(),
+        //     MyTickets(),
+        //   ],
+        // ),
       ),
     );
   }
