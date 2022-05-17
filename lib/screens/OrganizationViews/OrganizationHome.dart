@@ -5,52 +5,54 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shimmer/shimmer.dart';
+import '../../controlller/readService.dart';
+import 'SearchPage.dart';
+import 'BottonNavBar.dart';
 
-class OrganizerHome extends StatefulWidget {
-  const OrganizerHome({Key? key}) : super(key: key);
+
+class OrganizationHome extends StatefulWidget {
+  const OrganizationHome({Key? key}) : super(key: key);
 
   @override
-  State<OrganizerHome> createState() => _OrganizerHomeState();
+  _OrganizationHomeState createState() => _OrganizationHomeState();
 }
 
-class _OrganizerHomeState extends State<OrganizerHome> {
+class _OrganizationHomeState extends State<OrganizationHome> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: "My Events"),
-              Tab(text: "Create Events"),
-            ],
-          ),
-          title: const Text("Organizer"),
-          backgroundColor: MyColors.blueColor,
-          actions: [
-            PopupMenuButton(
-                // add icon, by default "3 dot" icon
-                // icon: Icon(Icons.book)
-                itemBuilder: (context) {
-              return [
-                const PopupMenuItem<int>(
-                  value: 0,
-                  child: Text("Logout"),
-                ),
-              ];
-            }, onSelected: (value) {
-              if (value == 0) {
-                context.read<AuthenticationService>().signOut();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => userCheck()),
-                    (_) => false);
-              }
-            }),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Organization"),
+        backgroundColor: Color.fromARGB(255, 38, 146, 173),
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => SearchPage())),
+              icon: Icon(Icons.search)),
+          PopupMenuButton(
+            // add icon, by default "3 dot" icon
+            // icon: Icon(Icons.book)
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem<int>(
+                    value: 0,
+                    child: Text("Logout"),
+                  ),
+                ];
+              }, onSelected: (value) {
+            if (value == 0) {
+              context.read<AuthenticationService>().signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => userCheck()),
+                      (_) => false);
+            }
+          }),
+        ],
       ),
+      body: BottomNavBar(),
     );
   }
 }

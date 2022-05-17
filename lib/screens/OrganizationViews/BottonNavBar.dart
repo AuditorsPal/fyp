@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
-import 'package:auditorpal/screens/AuditorsViews/profile.dart';
-class BottomNavigation extends StatefulWidget {
+import 'AuditorCard.dart';
+
+class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({Key? key}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    return _BottomNavigationState();
-  }
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    AllProjects(),
+    Auditor_list(),
     Text(
       "NEWSFEED",
       style: optionStyle,
@@ -22,7 +22,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
       "HOLIDAYS",
       style: optionStyle,
     ),
-   profile(),
+    Text(
+      "MY PROFILE",
+      style: optionStyle,
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -56,7 +59,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor:
-                Color.fromARGB(255, 38, 146, 173), // <-- This works for fixed
+            Color.fromARGB(255, 38, 146, 173), // <-- This works for fixed
             selectedItemColor: Color.fromARGB(255, 255, 255, 255),
             unselectedItemColor: Color.fromARGB(255, 0, 0, 0),
 
@@ -74,7 +77,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               BottomNavigationBarItem(
                 icon:
-                    Icon(Icons.analytics, color: Color.fromARGB(255, 0, 0, 0)),
+                Icon(Icons.analytics, color: Color.fromARGB(255, 0, 0, 0)),
                 label: 'Project',
               ),
               BottomNavigationBarItem(
@@ -92,3 +95,4 @@ class _BottomNavigationState extends State<BottomNavigation> {
     );
   }
 }
+
