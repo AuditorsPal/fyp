@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
 import 'AllProjects.dart';
-import 'MyTickets.dart';
 import 'package:auditorpal/widgets/bottomnav.dart';
 import 'NavBar.dart';
 import 'SearchPage.dart';
@@ -22,9 +21,7 @@ class AuditorHome extends StatefulWidget {
 class _AuditorHomeState extends State<AuditorHome> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
         drawer: NavBar(),
 
         appBar: AppBar(
@@ -65,7 +62,6 @@ class _AuditorHomeState extends State<AuditorHome> {
         //     MyTickets(),
         //   ],
         // ),
-      ),
-    );
+      );
   }
 }
