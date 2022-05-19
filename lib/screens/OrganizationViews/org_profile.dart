@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../controlller/readService.dart';
+import '../../model/userModel.dart';
 
 class org_profile extends StatefulWidget {
-  const org_profile({super.key});
-
   @override
   State<org_profile> createState() => _org_profileState();
 }
 
 class _org_profileState extends State<org_profile> {
+  late final org_profile;
+  String email="";
+  String id="";
+  bool isData=false;
+  @override
+  void initState() {
+    email=Provider.of<UserModel>(context, listen: false).email;
+    getIdByEmail();
+
+
+  }
+  readProfile() async{
+    org_profile = await ReadService.readOrgProfile(id);
+    setState(() {
+      isData=true;
+    });
+  }
+  getIdByEmail() async{
+    id=await ReadService.getOrgIdByEmail(email);
+    readProfile();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[500],
-      body: SingleChildScrollView(
+      body: isData == false ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             SizedBox(
@@ -46,7 +69,7 @@ class _org_profileState extends State<org_profile> {
                                 children: <Widget>[
                                   //Connect1
                                   Text(
-                                    "Company Name",
+                                    org_profile["name"],
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 23.0,

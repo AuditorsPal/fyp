@@ -10,6 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../controlller/readService.dart';
 import 'SearchPage.dart';
 import 'BottonNavBar.dart';
+import 'NavBar.dart';
 
 
 class OrganizationHome extends StatefulWidget {
@@ -23,8 +24,10 @@ class _OrganizationHomeState extends State<OrganizationHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       appBar: AppBar(
         title: const Text("Organization"),
+        centerTitle: true,
         backgroundColor: Color.fromARGB(255, 38, 146, 173),
         actions: [
           IconButton(
