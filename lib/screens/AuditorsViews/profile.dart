@@ -16,7 +16,7 @@ class _profileState extends State<profile> {
   void initState() {
     // TODO: implement initState
 
-    events = ReadService.readAllProjects();
+    
   }
   @override
   Widget build(BuildContext context) {

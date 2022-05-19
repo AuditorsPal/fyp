@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
 import 'AllProjects.dart';
-import 'MyTickets.dart';
 import 'package:auditorpal/widgets/bottomnav.dart';
 import 'NavBar.dart';
 import 'SearchPage.dart';

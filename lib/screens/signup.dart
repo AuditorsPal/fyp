@@ -133,7 +133,7 @@ class _MyRegisterState extends State<MyRegister> {
                                       if (response == "Signed up") {
                                         Loader.hide();
                                         String? response;
-                                        if (widget.userType == "user") {
+                                        if (widget.userType == "auditor") {
                                           response = await WriteService.addUser(
                                               email:
                                                   emailController.text.trim());

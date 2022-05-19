@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'AuditorCard.dart';
-
+import 'package:auditorpal/screens/OrganizationViews/org_profile.dart';
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
@@ -22,10 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       "HOLIDAYS",
       style: optionStyle,
     ),
-    Text(
-      "MY PROFILE",
-      style: optionStyle,
-    ),
+    org_profile(),
   ];
 
   void _onItemTapped(int index) {
