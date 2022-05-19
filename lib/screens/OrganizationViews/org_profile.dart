@@ -1,40 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:auditorpal/controlller/readService.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shimmer/shimmer.dart';
 
-class profile extends StatefulWidget {
-  const profile({Key? key}) : super(key: key);
+class org_profile extends StatefulWidget {
+  const org_profile({super.key});
 
   @override
-  State<profile> createState() => _profileState();
+  State<org_profile> createState() => _org_profileState();
 }
 
-class _profileState extends State<profile> {
-  late final Stream<QuerySnapshot>? profile;
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    events = ReadService.readAllProjects();
-  }
+class _org_profileState extends State<org_profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.grey[500],
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             SizedBox(
               height: 250,
               width: double.infinity,
-              child: Image.asset(
-                "assets/images/banner1.jpg",
-                fit: BoxFit.cover,
-              ),
+              child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.grey[800])),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(16.0, 200.0, 16.0, 16.0),
+              margin: EdgeInsets.fromLTRB(16.0, 130.0, 16.0, 16.0),
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -45,20 +33,20 @@ class _profileState extends State<profile> {
                           top: 16.0,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.blue[700],
-                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.teal[800],
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.only(left: 96.0),
+                              margin: EdgeInsets.only(left: 100.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   //Connect1
                                   Text(
-                                    "Sample text",
+                                    "Company Name",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 23.0,
@@ -80,73 +68,6 @@ class _profileState extends State<profile> {
                             SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              children: <Widget>[
-                                //Stat 1
-                                Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        "Rating",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "4/5",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                //Stat 2
-                                Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        "Availability",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "No",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                //Stat 3
-                                Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        "Experience",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        "N/A",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
                           ],
                         ),
                       ),
@@ -156,7 +77,7 @@ class _profileState extends State<profile> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17.0),
                           image: DecorationImage(
-                            image: AssetImage("assets/google.png"),
+                            image: AssetImage("assets/images/omen.png"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -181,7 +102,7 @@ class _profileState extends State<profile> {
                       children: <Widget>[
                         ListTile(
                           title: Text(
-                            "User Info",
+                            "Company Info",
                             style: TextStyle(
                               fontSize: 21.0,
                             ),
@@ -205,20 +126,28 @@ class _profileState extends State<profile> {
                           ),
                         ),
                         ListTile(
-                          title: Text("LinkedIn"),
-                          subtitle: Text("Link"),
+                          title: Text("Address"),
+                          subtitle: Text("221B, Baker Street"),
                           leading: Icon(
-                            Icons.link,
+                            Icons.location_city,
                             color: Colors.deepPurple,
                           ),
                         ),
                         ListTile(
-                          title: Text("About Me"),
+                          title: Text("About Us"),
                           subtitle:
                               Text("Full time description bazi and kahania"),
                           leading: Icon(
-                            Icons.person,
+                            Icons.business,
                             color: Colors.blue,
+                          ),
+                        ),
+                        ListTile(
+                          title: Text("NTN"),
+                          subtitle: Text("69420"),
+                          leading: Icon(
+                            Icons.numbers,
+                            color: Colors.black,
                           ),
                         ),
                       ],
