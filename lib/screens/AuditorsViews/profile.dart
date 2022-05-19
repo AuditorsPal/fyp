@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:auditorpal/controlller/readService.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:provider/provider.dart';
+
+import '../../controlller/readService.dart';
+import '../../model/userModel.dart';
 
 class profile extends StatefulWidget {
   const profile({Key? key}) : super(key: key);
@@ -11,30 +12,43 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-  late final Stream<QuerySnapshot>? profile;
+
+  late final profile;
+  String email="";
+  String id="";
+  bool isData=false;
   @override
   void initState() {
-    // TODO: implement initState
+    email=Provider.of<UserModel>(context, listen: false).email;
+    getIdByEmail();
 
-    
+
+  }
+  readProfile() async{
+    profile=await ReadService.readProfile(id);
+    setState(() {
+      isData=true;
+    });
+  }
+  getIdByEmail() async{
+    id=await ReadService.getIdByEventNameAndEmail(email);
+    readProfile();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
-      body: SingleChildScrollView(
+      backgroundColor: Colors.grey[500],
+      body: isData == false ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
         child: Stack(
           children: <Widget>[
             SizedBox(
               height: 250,
               width: double.infinity,
-              child: Image.asset(
-                "assets/images/banner1.jpg",
-                fit: BoxFit.cover,
-              ),
+              child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.grey[800])),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(16.0, 200.0, 16.0, 16.0),
+              margin: EdgeInsets.fromLTRB(16.0, 130.0, 16.0, 16.0),
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -45,8 +59,8 @@ class _profileState extends State<profile> {
                           top: 16.0,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.blue[700],
-                          borderRadius: BorderRadius.circular(5.0),
+                          color: Colors.lightBlue[900],
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,7 +72,7 @@ class _profileState extends State<profile> {
                                 children: <Widget>[
                                   //Connect1
                                   Text(
-                                    "Sample text",
+                                    profile["name"],
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 23.0,
@@ -156,7 +170,7 @@ class _profileState extends State<profile> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17.0),
                           image: DecorationImage(
-                            image: AssetImage("assets/google.png"),
+                            image: AssetImage("assets/images/omen.png"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -215,7 +229,7 @@ class _profileState extends State<profile> {
                         ListTile(
                           title: Text("About Me"),
                           subtitle:
-                              Text("Full time description bazi and kahania"),
+                          Text("Full time description bazi and kahania"),
                           leading: Icon(
                             Icons.person,
                             color: Colors.blue,

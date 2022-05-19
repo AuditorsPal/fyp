@@ -15,16 +15,16 @@ class ReadService{
       return null;
     }
   }
-  static Future<String> getIdByEventNameAndEmail(String? name,String ?email) async {
+  static Future<String> getIdByEventNameAndEmail(String ?email) async {
     try {
       var data;
       print("check");
-      final result = db.collection("Auditors").where("email",isEqualTo: email).where("name",isEqualTo: name);
+      final result = db.collection("Auditor").where("email",isEqualTo: email);
       var querySnapshots = await result.get();
       for (var snapshot in querySnapshots.docs) {
         data = snapshot.id; // <-- Document ID
       }
-
+print(data);
 
       return data;
     }
@@ -33,40 +33,51 @@ class ReadService{
     }
   }
 
-  static Future<String> getTicketStaTus(String? name,String ?email) async {
+  static Future<String> getOrgIdByEmail(String ?email) async {
     try {
       var data;
-      final result = db.collection("tickets").where("userEmail",isEqualTo: email).where("eventName",isEqualTo: name);
+      print("check");
+      final result = db.collection("Organization").where("email",isEqualTo: email);
       var querySnapshots = await result.get();
-
       for (var snapshot in querySnapshots.docs) {
-        data = (snapshot.data()["vStatus"]);
-        // <-- Document ID
+        data = snapshot.id; // <-- Document ID
       }
-
+      print(data);
 
       return data;
     }
     on FirebaseException catch (e) {
-      return "2";
+      return "1";
     }
   }
-  static Stream<QuerySnapshot>? readTicket(String email){
+
+
+  static Future readOrgProfile(String id) async {
     try {
-      final result = db.collection("tickets").where(
-          "userEmail", isEqualTo: email).snapshots();
-      return result;
+      final result = db.collection("Organization").doc(id);
+      var query=await result.get();
+
+      var data =query.data();
+
+      print(data!["name"]);
+
+      return data;
     }
     on FirebaseException catch (e) {
       return null;
     }
   }
 
-  static Stream<QuerySnapshot>? readTicketByName(String name){
+  static Future readProfile(String id) async {
     try {
-      final result = db.collection("tickets").where(
-          "eventName", isEqualTo: name).snapshots();
-      return result;
+      final result = db.collection("Auditor").doc(id);
+      var query=await result.get();
+
+      var data =query.data();
+
+      print(data!["name"]);
+
+      return data;
     }
     on FirebaseException catch (e) {
       return null;

@@ -21,9 +21,7 @@ class AuditorHome extends StatefulWidget {
 class _AuditorHomeState extends State<AuditorHome> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
         drawer: NavBar(),
 
         appBar: AppBar(
@@ -64,7 +62,6 @@ class _AuditorHomeState extends State<AuditorHome> {
         //     MyTickets(),
         //   ],
         // ),
-      ),
-    );
+      );
   }
 }

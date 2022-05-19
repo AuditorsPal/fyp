@@ -1,6 +1,8 @@
+import 'package:auditorpal/screens/OrganizationViews/org_profile.dart';
 import 'package:flutter/material.dart';
 import 'AuditorCard.dart';
-import 'package:auditorpal/screens/OrganizationViews/org_profile.dart';
+import 'org_profile.dart';
+
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
@@ -12,10 +14,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     Auditor_list(),
     Text(
-      "NEWSFEED",
+      "CHAT",
       style: optionStyle,
     ),
     Text(
@@ -67,7 +69,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle,
+                icon: Icon(Icons.chat,
                     color: Color.fromARGB(255, 0, 0, 0)),
                 label: ('Newsfeed'),
                 // backgroundColor: Colors.black
