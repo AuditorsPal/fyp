@@ -114,23 +114,54 @@ class AllProjects_State extends State<AllProjects> {
                   // Text(data.docs[index]['name'])
                   itemBuilder: (context, index) {
                     return Card(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ListTile(
-                            title: Text(
-                              data.docs[index]['title'],
-                              style: TextStyle(fontSize: 30),
-                            ),
-                  
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[],
-                          ),
-                        ],
-                      ),
-                    );
+                        color: Colors.white70,
+                        margin: EdgeInsets.all(30),
+                        child: Container(
+                        width: 300,
+                        height: 225,
+                        margin: EdgeInsets.all(20),
+                    child: Column(
+                    children: [
+                    Text(data.docs[index]["title"],
+                    style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline,
+                    ),),
+                    SizedBox(height: 10,),
+                    Text("Here is the basic description of the project and the details about the type of company business. This will help the auditors get the basic info about the auditing project they are supposed to do...",
+                    ),
+                    SizedBox(height: 10,),
+                    Text("Budget: Rs. 50,000",
+                    style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+
+                    ),),
+                    SizedBox(height: 15,),
+                    ElevatedButton(
+                    onPressed: () {},
+
+                    style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    elevation: 0,
+                    padding: EdgeInsets.fromLTRB(20, 12, 20, 12),
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(color: Colors.black,)
+                    )
+                    ),
+                    child: Text("View Profile",
+                    style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.black,
+                    ),),
+                    )
+                    ],
+                    ),
+                        ));
                   });
             }));
   }

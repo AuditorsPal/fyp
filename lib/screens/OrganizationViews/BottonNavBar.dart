@@ -71,7 +71,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.chat,
                     color: Color.fromARGB(255, 0, 0, 0)),
-                label: ('Newsfeed'),
+                label: ('Chat'),
                 // backgroundColor: Colors.black
               ),
               BottomNavigationBarItem(
