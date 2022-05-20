@@ -123,8 +123,12 @@ class _Auditor_listState extends State<Auditor_list> {
                 return Card(
                   color: Colors.white70,
                   margin: EdgeInsets.all(30),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 4,
                   child: Container(
-                    height: 250,
+                    height: 225,
                     width: 300,
                     margin: EdgeInsets.all(30),
                     child: Column(
@@ -135,15 +139,14 @@ class _Auditor_listState extends State<Auditor_list> {
                         SizedBox(height: 10,),
                         Text(data.docs[index]['name'],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
                           ),),
                         SizedBox(height: 10,),
-                        Text("Experience: " + data.docs[index]['experience'],),
-                        SizedBox(height: 10,),
-                        Text("view details", style: TextStyle(
-                          decoration: TextDecoration.underline,
+                        Text("Experience: " + data.docs[index]['experience'],
+                        style: TextStyle(
+                          fontSize: 14,
                         ),),
                         SizedBox(height: 15,),
                         ElevatedButton(
@@ -155,7 +158,7 @@ class _Auditor_listState extends State<Auditor_list> {
                               padding: EdgeInsets.fromLTRB(20, 12, 20, 12),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(color: Colors.black,)
+                                  side: BorderSide(color: Colors.black, width: 2,)
                               )
                           ),
                           child: Text("View Profile",
