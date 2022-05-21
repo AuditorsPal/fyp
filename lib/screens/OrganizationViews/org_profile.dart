@@ -39,7 +39,7 @@ class _org_profileState extends State<org_profile> {
         child: Stack(
           children: <Widget>[
             SizedBox(
-              height: 250,
+              height: 215,
               width: double.infinity,
               child: DecoratedBox(
                   decoration: BoxDecoration(color: Colors.grey[800])),
@@ -105,8 +105,27 @@ class _org_profileState extends State<org_profile> {
                     ],
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 35.0,
                   ),
+
+                  ElevatedButton(onPressed: () {},
+                    child: Text("Edit Profile",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.blue,
+                      ),),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        elevation: 2,
+                        padding: EdgeInsets.fromLTRB(25, 12, 25, 12),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Colors.blueGrey, width: 2,)
+                        )
+                    ),),
+                  SizedBox(height: 20,),
+
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -136,7 +155,7 @@ class _org_profileState extends State<org_profile> {
                         Divider(),
                         ListTile(
                           title: Text("Email"),
-                          subtitle: Text("email@gmail.com"),
+                          subtitle: Text(org_profile["email"]),
                           leading: Icon(
                             Icons.email,
                             color: Colors.red,
@@ -144,7 +163,7 @@ class _org_profileState extends State<org_profile> {
                         ),
                         ListTile(
                           title: Text("Phone"),
-                          subtitle: Text("090078601"),
+                          subtitle: Text(org_profile["phone_number"]),
                           leading: Icon(
                             Icons.phone,
                             color: Colors.green,
@@ -152,16 +171,16 @@ class _org_profileState extends State<org_profile> {
                         ),
                         ListTile(
                           title: Text("Address"),
-                          subtitle: Text("221B, Baker Street"),
+                          subtitle: Text(org_profile["address"]),
                           leading: Icon(
-                            Icons.location_city,
+                            Icons.location_on,
                             color: Colors.deepPurple,
                           ),
                         ),
                         ListTile(
-                          title: Text("About Us"),
+                          title: Text("Business Details"),
                           subtitle:
-                              Text("Full time description bazi and kahania"),
+                              Text(org_profile["businessdetail"]),
                           leading: Icon(
                             Icons.business,
                             color: Colors.blue,
@@ -169,7 +188,7 @@ class _org_profileState extends State<org_profile> {
                         ),
                         ListTile(
                           title: Text("NTN"),
-                          subtitle: Text("69420"),
+                          subtitle: Text(org_profile["ntn"]),
                           leading: Icon(
                             Icons.numbers,
                             color: Colors.black,

@@ -2,6 +2,7 @@ import 'package:auditorpal/screens/OrganizationViews/org_profile.dart';
 import 'package:flutter/material.dart';
 import 'AuditorCard.dart';
 import 'org_profile.dart';
+import 'organizeeAllChats.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -16,10 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     Auditor_list(),
-    Text(
-      "CHAT",
-      style: optionStyle,
-    ),
+    OrgAllChats(),
     Text(
       "HOLIDAYS",
       style: optionStyle,

@@ -1,3 +1,4 @@
+import 'package:auditorpal/screens/AuditorsViews/auditorsAllchats.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
 import 'package:auditorpal/screens/AuditorsViews/profile.dart';
@@ -14,10 +15,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     AllProjects(),
-    Text(
-      "NEWSFEED",
-      style: optionStyle,
-    ),
+    AllChats(),
     Text(
       "HOLIDAYS",
       style: optionStyle,
@@ -67,9 +65,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle,
+                icon: Icon(Icons.chat,
                     color: Color.fromARGB(255, 0, 0, 0)),
-                label: ('Newsfeed'),
+                label: ('Chat'),
                 // backgroundColor: Colors.black
               ),
               BottomNavigationBarItem(
