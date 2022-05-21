@@ -9,6 +9,7 @@ import '../UserCheck.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../controlller/readService.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Auditor_list extends StatefulWidget {
   const Auditor_list({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class _Auditor_listState extends State<Auditor_list> {
                   ),
                   elevation: 4,
                   child: Container(
-                    height: 225,
+                    height: 275,
                     width: 300,
                     margin: EdgeInsets.all(30),
                     child: Column(
@@ -150,6 +151,23 @@ class _Auditor_listState extends State<Auditor_list> {
                           fontSize: 14,
                         ),),
                         SizedBox(height: 15,),
+                      RatingBar.builder(
+                        initialRating: 3,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {
+                          print(rating);
+                        },
+                      ),
+                        SizedBox(height: 15,),
+
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(

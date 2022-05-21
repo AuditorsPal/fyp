@@ -34,7 +34,7 @@ class _org_profileState extends State<org_profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[500],
+      backgroundColor: Colors.white70,
       body: isData == false ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
         child: Stack(
           children: <Widget>[
@@ -45,7 +45,7 @@ class _org_profileState extends State<org_profile> {
                   decoration: BoxDecoration(color: Colors.grey[800])),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(16.0, 130.0, 16.0, 16.0),
+              margin: EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 16.0),
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -98,11 +98,7 @@ class _org_profileState extends State<org_profile> {
                         height: 85,
                         width: 85,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(17.0),
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/omen.png"),
-                            fit: BoxFit.cover,
-                          ),
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                         margin: EdgeInsets.only(left: 17.0),
                       ),
@@ -117,7 +113,13 @@ class _org_profileState extends State<org_profile> {
                     ),
                   ),
                   Container(
+
                     decoration: BoxDecoration(
+                      boxShadow: [BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 6,
+                      ),],
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
