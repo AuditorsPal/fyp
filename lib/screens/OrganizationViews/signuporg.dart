@@ -6,17 +6,24 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 
-class MyRegister extends StatefulWidget {
+class MyRegisterorg extends StatefulWidget {
   final String userType;
-  const MyRegister({Key? key, required this.userType}) : super(key: key);
+
+  const MyRegisterorg({Key? key, required this.userType}) : super(key: key);
 
   @override
-  _MyRegisterState createState() => _MyRegisterState();
+  _MyRegisterorgState createState() => _MyRegisterorgState();
 }
 
-class _MyRegisterState extends State<MyRegister> {
+class _MyRegisterorgState extends State<MyRegisterorg> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController ntnController = TextEditingController();
+  final TextEditingController phonenoController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController businessdetailController = TextEditingController();
+   String error = "";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,6 +85,131 @@ class _MyRegisterState extends State<MyRegister> {
                           SizedBox(
                             height: 30,
                           ),
+                          TextFormField(
+                            controller: nameController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Name",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextFormField(
+                            controller: addressController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "address",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextFormField(
+                            controller: businessdetailController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Business Details",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextFormField(
+                            controller: ntnController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "NTN",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextFormField(
+                            controller: phonenoController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Phone number",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
                           TextField(
                             controller: passwordController,
                             style: TextStyle(color: Colors.white),
@@ -101,6 +233,38 @@ class _MyRegisterState extends State<MyRegister> {
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
+                                                      SizedBox(
+                              height: 30,
+                            ),
+                            TextFormField(
+                              validator: (value) {
+                                if (passwordController.text.trim() != value) {
+                                  setState(() {
+                                    error = "Passwords Don't match.";
+                                  });
+                                }
+                              },
+                              style: TextStyle(color: Colors.white),
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  hintText: "Confirm Password",
+                                  hintStyle: TextStyle(color: Colors.white),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  )),
+                            ),
                           SizedBox(
                             height: 40,
                           ),
@@ -133,15 +297,20 @@ class _MyRegisterState extends State<MyRegister> {
                                       if (response == "Signed up") {
                                         Loader.hide();
                                         String? response;
-                                        if (widget.userType == "auditor") {
-                                          response = await WriteService.addUser(
-                                              email:
-                                                  emailController.text.trim());
-                                        } else {
+                                        if (widget.userType == "organization") {
                                           response =
                                               await WriteService.addOrganizer(
                                                   email: emailController.text
-                                                      .trim());
+                                                      .trim(),
+                                                        name: nameController.text.trim(),
+                                              phoneno:
+                                                  phonenoController.text.trim(),
+                                              businessdetail: businessdetailController
+                                                  .text
+                                                  .trim(),
+                                              ntn: ntnController.text.trim(),
+                                              address: addressController.text
+                                                  .trim(),);
                                         }
 
                                         if (response == '1') {

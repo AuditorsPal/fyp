@@ -6,8 +6,9 @@ import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
-import 'signup.dart';
+import 'AuditorsViews/signupaud.dart';
 import '../model/userModel.dart';
+import 'OrganizationViews/signuporg.dart';
 
 class MyLogin extends StatefulWidget {
   final String userType;
@@ -163,18 +164,37 @@ class _MyLoginState extends State<MyLogin> {
                               children: [
                                 TextButton(
                                   onPressed: () async {
-                                    final result = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MyRegister(
-                                                userType: widget.userType,
-                                              )),
-                                    );
-                                    if (result != null) {
-                                      ScaffoldMessenger.of(context)
-                                        ..removeCurrentSnackBar()
-                                        ..showSnackBar(
-                                            SnackBar(content: Text('$result')));
+                                    if (widget.userType == "auditor") {
+                                      final result = await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => MyRegister(
+                                                  userType: widget.userType,
+                                                )),
+                                      );
+                                      if (result != null) {
+                                        ScaffoldMessenger.of(context)
+                                          ..removeCurrentSnackBar()
+                                          ..showSnackBar(SnackBar(
+                                              content: Text('$result')));
+                                      }
+                                    } else {
+                                     
+                                        final result = await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MyRegisterorg(
+                                                    userType: widget.userType,
+                                                  )),
+                                        );
+                                        if (result != null) {
+                                          ScaffoldMessenger.of(context)
+                                            ..removeCurrentSnackBar()
+                                            ..showSnackBar(SnackBar(
+                                                content: Text('$result')));
+                                        }
+                                      
                                     }
                                   },
                                   child: const Text(
