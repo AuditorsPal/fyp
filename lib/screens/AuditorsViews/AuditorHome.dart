@@ -8,7 +8,7 @@ import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
 import 'AllProjects.dart';
 import 'package:auditorpal/widgets/bottomnav.dart';
-import 'NavBar.dart';
+import 'NavBaraud.dart';
 import 'SearchPage.dart';
 
 class AuditorHome extends StatefulWidget {
@@ -33,25 +33,7 @@ class _AuditorHomeState extends State<AuditorHome> {
                 onPressed: () => Navigator.of(context)
                     .push(MaterialPageRoute(builder: (_) => SearchPage())),
                 icon: Icon(Icons.search)),
-            PopupMenuButton(
-                // add icon, by default "3 dot" icon
-                // icon: Icon(Icons.book)
-                itemBuilder: (context) {
-              return [
-                const PopupMenuItem<int>(
-                  value: 0,
-                  child: Text("Logout"),
-                ),
-              ];
-            }, onSelected: (value) {
-              if (value == 0) {
-                context.read<AuthenticationService>().signOut();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => userCheck()),
-                    (_) => false);
-              }
-            }),
+
           ],
         ),
         body: BottomNavigation(),

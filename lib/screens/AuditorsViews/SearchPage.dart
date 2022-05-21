@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:auditorpal/screens/AllProjects.dart';
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var _controller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 38, 146, 173),
@@ -16,19 +17,19 @@ class SearchPage extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
             child: Center(
               child: TextField(
+                controller: _controller,
                 decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: () {
-                        /* Clear the search field */
-                      },
-                    ),
-                    hintText: 'Search...',
+                        icon: Icon(Icons.clear), onPressed: _controller.clear),
+                    hintText: 'Search',
                     border: InputBorder.none),
               ),
+
+        
             ),
           )),
+          body: AllProjects(),
     );
   }
 }

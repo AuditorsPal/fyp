@@ -10,8 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../controlller/readService.dart';
 import 'SearchPage.dart';
 import 'BottonNavBar.dart';
-import 'NavBar.dart';
-
+import 'package:auditorpal/screens/AuditorsViews/NavBaraud.dart';
 
 class OrganizationHome extends StatefulWidget {
   const OrganizationHome({Key? key}) : super(key: key);
@@ -34,25 +33,7 @@ class _OrganizationHomeState extends State<OrganizationHome> {
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
               icon: Icon(Icons.search)),
-          PopupMenuButton(
-            // add icon, by default "3 dot" icon
-            // icon: Icon(Icons.book)
-              itemBuilder: (context) {
-                return [
-                  const PopupMenuItem<int>(
-                    value: 0,
-                    child: Text("Logout"),
-                  ),
-                ];
-              }, onSelected: (value) {
-            if (value == 0) {
-              context.read<AuthenticationService>().signOut();
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => userCheck()),
-                      (_) => false);
-            }
-          }),
+          
         ],
       ),
       body: BottomNavBar(),
