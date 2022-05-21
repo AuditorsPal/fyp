@@ -116,6 +116,10 @@ class AllProjects_State extends State<AllProjects> {
                     return Card(
                         color: Colors.white70,
                         margin: EdgeInsets.all(30),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 4,
                         child: Container(
                         width: 300,
                         height: 225,

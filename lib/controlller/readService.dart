@@ -84,6 +84,19 @@ print(data);
     }
   }
 
+  static Future readProject(String id) async {
+    try {
+      final result = db.collection("Project").doc(id);
+      var query=await result.get();
+
+      var data =query.data();
+      return data;
+    }
+    on FirebaseException catch (e) {
+      return null;
+    }
+  }
+
   static Stream<QuerySnapshot>? readAllProjects(){
     try {
       final result = db.collection("Project").snapshots();

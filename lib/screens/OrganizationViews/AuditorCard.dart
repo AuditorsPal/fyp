@@ -1,5 +1,6 @@
 import 'package:auditorpal/Colors.dart';
 import 'package:auditorpal/model/userModel.dart';
+import 'package:auditorpal/screens/OrganizationViews/auditor_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -150,7 +151,13 @@ class _Auditor_listState extends State<Auditor_list> {
                         ),),
                         SizedBox(height: 15,),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                   AuditorDetail(auditor_id:  data.docs[index].id)));
+                          },
 
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
