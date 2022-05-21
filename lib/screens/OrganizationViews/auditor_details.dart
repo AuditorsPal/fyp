@@ -1,6 +1,9 @@
+import 'package:auditorpal/screens/OrganizationViews/organizerChatHome.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../controlller/readService.dart';
+import '../../model/userModel.dart';
 
 class AuditorDetail extends StatefulWidget {
   final  auditor_id;
@@ -13,11 +16,19 @@ class AuditorDetail extends StatefulWidget {
 class _AuditorDetailState extends State<AuditorDetail> {
   late final profile;
   bool isData=false;
+  String email = "";
+  String id="";
   @override
   void initState() {
+    email = Provider.of<UserModel>(context, listen: false).email;
+    getIdByEmail();
 
+
+  }
+
+  getIdByEmail() async{
+    id=await ReadService.getOrgIdByEmail(email);
     readProfile();
-
   }
   readProfile() async{
     profile=await ReadService.readProfile(widget.auditor_id);
@@ -78,7 +89,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
                                     title: Text(
-                                      "Country",
+                                      "Pakistan",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,
@@ -104,8 +115,8 @@ class _AuditorDetailState extends State<AuditorDetail> {
                                           fontSize: 17.0,
                                         ),
                                       ),
-                                      Text(
-                                        "4/5",
+                                      Text(profile["rating"] +
+                                        "/5",
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 17.0,
@@ -147,7 +158,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                                         ),
                                       ),
                                       Text(
-                                        "N/A",
+                                        profile["experience"],
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 17.0,
@@ -174,25 +185,61 @@ class _AuditorDetailState extends State<AuditorDetail> {
                   SizedBox(
                     height: 35.0,
                   ),
-                  ElevatedButton(onPressed: () {},
-                    child: Text("Chat",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.blue,
-                      ),),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        elevation: 0,
-                        padding: EdgeInsets.fromLTRB(25, 12, 25, 12),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.black, width: 2,)
-                        )
-                    ),),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(onPressed: () {
+
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrganizerChatHome(otherUserID: widget.auditor_id, currentUserID: id, email: email)
+                            ));
+                      },
+                        child: Text("Chat",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            elevation: 2,
+                            padding: EdgeInsets.fromLTRB(25, 12, 25, 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(color: Colors.blueGrey, width: 2,)
+                            )
+                        ),),
+                      SizedBox(width: 20,),
+                      ElevatedButton(onPressed: () {},
+                        child: Text("Hire Auditor",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            color: Colors.blue,
+                          ),),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            elevation: 2,
+                            padding: EdgeInsets.fromLTRB(25, 12, 25, 12),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                side: BorderSide(color: Colors.blueGrey, width: 2,)
+                            )
+                        ),),
+                    ],
+                  ),
+
                   SizedBox(height: 20,),
                   Container(
                     decoration: BoxDecoration(
+                      boxShadow: [BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 6,
+                      ),],
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -209,7 +256,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                         Divider(),
                         ListTile(
                           title: Text("Email"),
-                          subtitle: Text("email@gmail.com"),
+                          subtitle: Text(profile["email"]),
                           leading: Icon(
                             Icons.email,
                             color: Colors.red,
@@ -217,24 +264,24 @@ class _AuditorDetailState extends State<AuditorDetail> {
                         ),
                         ListTile(
                           title: Text("Phone"),
-                          subtitle: Text("090078601"),
+                          subtitle: Text(profile["phone_number"]),
                           leading: Icon(
                             Icons.phone,
                             color: Colors.green,
                           ),
                         ),
                         ListTile(
-                          title: Text("LinkedIn"),
-                          subtitle: Text("Link"),
+                          title: Text("No. of projects"),
+                          subtitle: Text(profile["number_of_projects"]),
                           leading: Icon(
                             Icons.link,
                             color: Colors.deepPurple,
                           ),
                         ),
                         ListTile(
-                          title: Text("About Me"),
+                          title: Text("Total Earnings"),
                           subtitle:
-                          Text("Full time description bazi and kahania"),
+                          Text("Rs. " + profile["total_earning"]),
                           leading: Icon(
                             Icons.person,
                             color: Colors.blue,

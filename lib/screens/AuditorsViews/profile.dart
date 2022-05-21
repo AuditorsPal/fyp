@@ -37,7 +37,7 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[500],
+      backgroundColor: Colors.white,
       body: isData == false ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
         child: Stack(
           children: <Widget>[
@@ -48,7 +48,7 @@ class _profileState extends State<profile> {
                   decoration: BoxDecoration(color: Colors.grey[800])),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(16.0, 130.0, 16.0, 16.0),
+              margin: EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 16.0),
               child: Column(
                 children: <Widget>[
                   Stack(
@@ -81,7 +81,7 @@ class _profileState extends State<profile> {
                                   ListTile(
                                     contentPadding: EdgeInsets.all(0),
                                     title: Text(
-                                      "Country",
+                                      "Pakistan",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 15,
@@ -107,8 +107,8 @@ class _profileState extends State<profile> {
                                           fontSize: 17.0,
                                         ),
                                       ),
-                                      Text(
-                                        "4/5",
+                                      Text(profile["rating"] +
+                                        "/5",
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 17.0,
@@ -150,7 +150,7 @@ class _profileState extends State<profile> {
                                         ),
                                       ),
                                       Text(
-                                        "N/A",
+                                        profile["experience"],
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 17.0,
@@ -169,17 +169,13 @@ class _profileState extends State<profile> {
                         width: 85,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(17.0),
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/omen.png"),
-                            fit: BoxFit.cover,
-                          ),
                         ),
                         margin: EdgeInsets.only(left: 17.0),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -189,6 +185,11 @@ class _profileState extends State<profile> {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
+                      boxShadow: [BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1.0, 1.0),
+                        blurRadius: 6,
+                      ),],
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
@@ -204,7 +205,7 @@ class _profileState extends State<profile> {
                         Divider(),
                         ListTile(
                           title: Text("Email"),
-                          subtitle: Text("email@gmail.com"),
+                          subtitle: Text(profile["email"]),
                           leading: Icon(
                             Icons.email,
                             color: Colors.red,
@@ -212,26 +213,26 @@ class _profileState extends State<profile> {
                         ),
                         ListTile(
                           title: Text("Phone"),
-                          subtitle: Text("090078601"),
+                          subtitle: Text(profile["phone_number"]),
                           leading: Icon(
                             Icons.phone,
                             color: Colors.green,
                           ),
                         ),
                         ListTile(
-                          title: Text("LinkedIn"),
-                          subtitle: Text("Link"),
+                          title: Text("No. of Projects"),
+                          subtitle: Text(profile["number_of_projects"]),
                           leading: Icon(
                             Icons.link,
                             color: Colors.deepPurple,
                           ),
                         ),
                         ListTile(
-                          title: Text("About Me"),
+                          title: Text("Total Earning"),
                           subtitle:
-                          Text("Full time description bazi and kahania"),
+                          Text("Rs. " + profile["total_earning"]),
                           leading: Icon(
-                            Icons.person,
+                            Icons.monetization_on_rounded,
                             color: Colors.blue,
                           ),
                         ),

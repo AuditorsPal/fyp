@@ -1,30 +1,69 @@
-import 'package:flutter/material.dart';
-import 'package:auditorpal/controlller/readService.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:auditorpal/Colors.dart';
 
-class AllProjects extends StatefulWidget {
-  const AllProjects({Key? key}) : super(key: key);
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../controlller/readService.dart';
+import '../../model/userModel.dart';
+import 'organizerChatHome.dart';
+
+
+class OrgAllChats extends StatefulWidget {
+  const OrgAllChats({ Key? key }) : super(key: key);
 
   @override
-  State<AllProjects> createState() => AllProjects_State();
+  State<OrgAllChats> createState() => _AllChatsState();
 }
 
-class AllProjects_State extends State<AllProjects> {
-  late final Stream<QuerySnapshot>? events;
+class _AllChatsState extends State<OrgAllChats> {
+
+  String email = "";
+  String id="";
+  bool isData=false;
+  late final Stream<QuerySnapshot>? chats;
+
   @override
   void initState() {
     // TODO: implement initState
+    email = Provider.of<UserModel>(context, listen: false).email;
+    getIdByEmail();
+  }
 
-    events = ReadService.readAllProjects();
+  readProfile() async{
+    chats=readChats(id);
+    setState(() {
+      isData=true;
+    });
+  }
+
+
+  getIdByEmail() async{
+    id=await ReadService.getOrgIdByEmail(email);
+    readProfile();
+  }
+
+  static Stream<QuerySnapshot>? readChats(String id) {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    try {
+      final result = db
+          .collection("Auditor")
+          .snapshots();
+
+      return result;
+    } on FirebaseException catch (e) {
+      return null;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: events,
+    return isData ==false? Center(child: CircularProgressIndicator()):  Scaffold(
+
+        body: StreamBuilder<QuerySnapshot>(
+            stream: chats,
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -107,65 +146,43 @@ class AllProjects_State extends State<AllProjects> {
                       ),
                     ));
               }
-
               final data = snapshot.requireData;
               return ListView.builder(
                   itemCount: data.size,
                   // Text(data.docs[index]['name'])
                   itemBuilder: (context, index) {
                     return Card(
-                        color: Colors.white70,
-                        margin: EdgeInsets.all(30),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 4,
-                        child: Container(
-                          width: 300,
-                          height: 225,
-                          margin: EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              Text(data.docs[index]["title"],
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration.underline,
-                                ),),
-                              SizedBox(height: 10,),
-                              Text("Here is the basic description of the project and the details about the type of company business. This will help the auditors get the basic info about the auditing project they are supposed to do...",
-                              ),
-                              SizedBox(height: 10,),
-                              Text("Budget: Rs. 50,000",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-
-                                ),),
-                              SizedBox(height: 15,),
-                              ElevatedButton(
-                                onPressed: () {},
-
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    elevation: 0,
-                                    padding: EdgeInsets.fromLTRB(20, 12, 20, 12),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(20),
-                                        side: BorderSide(color: Colors.black,)
-                                    )
-                                ),
-                                child: Text("View Profile",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.black,
-                                  ),),
-                              )
-                            ],
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 25.0,
+                              child: Text(data.docs[index]["name"][0],
+                                  style: TextStyle(fontSize: 30.0)),
+                            ),
+                            title: Text(
+                              data.docs[index]['name'],
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            subtitle: Text(
+                              data.docs[index]['email'],
+                              style: TextStyle(fontSize: 30),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OrganizerChatHome(
+                                      otherUserID: data.docs[index].id, currentUserID: id, email: email,
+                                    ),
+                                  ));
+                            },
                           ),
-                        ));
+                        ],
+                      ),
+                    );
                   });
             }));
   }
