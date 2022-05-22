@@ -1,3 +1,4 @@
+import 'package:auditorpal/screens/OrganizationViews/projectupload.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auditorpal/Colors.dart';
@@ -122,9 +123,15 @@ class _org_profileState extends State<org_profile> {
                           height: 35.0,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ProjectUpload(org_id: id)));
+                          },
                           child: Text(
-                            "Edit Profile",
+                            "Upload Project",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

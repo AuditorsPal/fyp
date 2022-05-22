@@ -5,7 +5,6 @@ import 'package:auditorpal/controlller/writeService.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
-
 import '../../Colors.dart';
 import '../login.dart';
 
@@ -25,8 +24,7 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
   final TextEditingController phonenoController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  final TextEditingController businessdetailController =
-      TextEditingController();
+  final TextEditingController businessdetailController = TextEditingController();
   String error = "";
   @override
   Widget build(BuildContext context) {
