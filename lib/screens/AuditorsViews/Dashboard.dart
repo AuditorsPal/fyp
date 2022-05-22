@@ -6,15 +6,18 @@ import 'package:shimmer/shimmer.dart';
 import 'package:auditorpal/Colors.dart';
 
 import '../../widgets/cards.dart';
+import '../AuditorsViews/AllProjects.dart';
+import 'Allprojs.dart';
 
-class AllProjects extends StatefulWidget {
-  const AllProjects({Key? key}) : super(key: key);
+
+class DashBoard extends StatefulWidget {
+  const DashBoard({Key? key}) : super(key: key);
 
   @override
-  State<AllProjects> createState() => AllProjects_State();
+  State<DashBoard> createState() => DashBoard_State();
 }
 
-class AllProjects_State extends State<AllProjects> {
+class DashBoard_State extends State<DashBoard> {
   late final Stream<QuerySnapshot>? events;
   @override
   void initState() {

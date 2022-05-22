@@ -1,21 +1,22 @@
 import 'package:auditorpal/screens/AuditorsViews/project_detail.dart';
-import 'package:auditorpal/screens/OrganizationViews/project_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/controlller/readService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:auditorpal/Colors.dart';
 
-import '../AuditorsViews/SearchPage.dart';
+import '../../widgets/cards.dart';
+import '../OrganizationViews/SearchPage.dart';
 
-class AllProjects extends StatefulWidget {
-  const AllProjects({Key? key}) : super(key: key);
+class AllProjs extends StatefulWidget {
+  const AllProjs({Key? key}) : super(key: key);
 
   @override
-  State<AllProjects> createState() => AllProjects_State();
+  State<AllProjs> createState() => AllProjs_State();
 }
 
-class AllProjects_State extends State<AllProjects> {
+class AllProjs_State extends State<AllProjs> {
   late final Stream<QuerySnapshot>? events;
   @override
   void initState() {
@@ -27,7 +28,18 @@ class AllProjects_State extends State<AllProjects> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
+       appBar:  AppBar(
+          centerTitle: true,
+          title: const Text("Auditor"),
+          backgroundColor: Color.fromARGB(255, 38, 146, 173),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SearchPage())),
+                icon: Icon(Icons.search)),
+
+          ],
+        ),
       body: Container(
           child: StreamBuilder<QuerySnapshot>(
               stream: events,
@@ -183,5 +195,4 @@ class AllProjects_State extends State<AllProjects> {
                     });
               })),
     );
-  }
-}
+  }}

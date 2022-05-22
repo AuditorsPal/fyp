@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../Colors.dart';
 import '../../controlller/readService.dart';
 import '../../model/userModel.dart';
 import 'auditorChatHome.dart';
@@ -156,10 +157,10 @@ class _AllChatsState extends State<AllChats> {
                         children: <Widget>[
                           ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: Colors.green,
+                              backgroundColor: MyColors.blueColor,
                               radius: 25.0,
                               child: Text(data.docs[index]["name"][0],
-                                  style: TextStyle(fontSize: 30.0)),
+                                  style: TextStyle(fontSize: 30.0, color: Colors.white)),
                             ),
                             title: Text(
                               data.docs[index]['name'],

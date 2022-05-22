@@ -1,3 +1,4 @@
+import 'package:auditorpal/Colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class AdviseeChatHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Chatting... "),),
+      appBar:AppBar(title: Text("Chats"), backgroundColor: MyColors.blueColor,),
       body:  AdviseeChat( otherUserID:otherUserID, currentUserID: currentUserID, email: email,),
     );
   }
