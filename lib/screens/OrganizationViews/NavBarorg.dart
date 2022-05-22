@@ -45,6 +45,7 @@ class _NavBarState extends State<NavBar> {
               backgroundColor: Colors.redAccent,
               minRadius: 100.0,
               child: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 38, 146, 173),
                 radius: 80.0,
                 child: Text(
                   "${user[0]}",

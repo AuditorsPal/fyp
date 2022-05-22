@@ -25,7 +25,9 @@ class _OrganizationHomeState extends State<OrganizationHome> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        title: const Text("Organization"),
+        title: Image.asset('assets/images/AuditorsPal2.png',fit:BoxFit.cover,
+          height:160.00,
+          width:160.00),
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 38, 146, 173),
         actions: [

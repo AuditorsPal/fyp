@@ -209,7 +209,7 @@ class DashBoard_State extends State<DashBoard> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllProjects()));
+                    MaterialPageRoute(builder: (context) => AllProjs()));
               },
               child: Text(
                 "Find Work",

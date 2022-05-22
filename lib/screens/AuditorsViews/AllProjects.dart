@@ -27,7 +27,6 @@ class AllProjects_State extends State<AllProjects> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   
       body: Container(
           child: StreamBuilder<QuerySnapshot>(
               stream: events,
