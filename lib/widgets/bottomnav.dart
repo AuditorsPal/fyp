@@ -1,4 +1,5 @@
 import 'package:auditorpal/screens/AuditorsViews/auditorsAllchats.dart';
+import 'package:auditorpal/screens/AuditorsViews/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
 import 'package:auditorpal/screens/AuditorsViews/profile.dart';
@@ -16,10 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const List<Widget> _widgetOptions = <Widget>[
     AllProjects(),
     AllChats(),
-    Text(
-      "HOLIDAYS",
-      style: optionStyle,
-    ),
+    progress(),
    profile(),
   ];
 

@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class WriteService {
   static FirebaseFirestore db = FirebaseFirestore.instance;
 
-  static Future<String?> addUser({required String email , required String name, required String phoneno, required String experience,required String cnic,required String dob}) async {
-    final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "dob":dob};
+  static Future<String?> addUser({required String email , required String name, required String phoneno, required String experience,required String cnic}) async {
+    final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "number_of_projects": '0', "total_earning": '0', "rating": '0'};
     try {
       await db.collection("Auditor").add(user);
       return "1";

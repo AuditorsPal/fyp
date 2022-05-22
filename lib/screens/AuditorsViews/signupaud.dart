@@ -17,7 +17,6 @@ class MyRegister extends StatefulWidget {
 class _MyRegisterState extends State<MyRegister> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController dateofbirthController = TextEditingController();
   final TextEditingController phonenoController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController experienceController = TextEditingController();
@@ -164,31 +163,6 @@ class _MyRegisterState extends State<MyRegister> {
                               height: 30,
                             ),
                             TextFormField(
-                              controller: dateofbirthController,
-                              style: TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  hintText: "Date of Birth ",
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            TextFormField(
                               controller: phonenoController,
                               style: TextStyle(color: Colors.white),
                               decoration: InputDecoration(
@@ -314,8 +288,7 @@ class _MyRegisterState extends State<MyRegister> {
                                                   .text
                                                   .trim(),
                                               cnic: cnicController.text.trim(),
-                                              dob: dateofbirthController.text
-                                                  .trim(),
+
                                             );
                                           } 
 

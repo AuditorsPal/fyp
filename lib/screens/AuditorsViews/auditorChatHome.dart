@@ -12,7 +12,7 @@ class AdviseeChatHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Chating... "),),
+      appBar:AppBar(title: Text("Chatting... "),),
       body:  AdviseeChat( otherUserID:otherUserID, currentUserID: currentUserID, email: email,),
     );
   }

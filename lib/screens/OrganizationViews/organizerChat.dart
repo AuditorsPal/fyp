@@ -160,7 +160,7 @@ class _AlertChatState extends State<OrganizerChat> {
                     padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     width: 200,
                     decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: Colors.grey,
                         borderRadius: BorderRadius.circular(8)),
                     margin: EdgeInsets.only(left: 10),
                     child: InkWell(
@@ -243,14 +243,6 @@ class _AlertChatState extends State<OrganizerChat> {
                       )
                   ),
                 ],
-              ),
-              Container(
-                child: Text("by: " + document.get("name"),
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 12,
-                        fontStyle: FontStyle.italic)),
-                margin: EdgeInsets.only(left: 50, top: 5, bottom: 5),
               ),
               Container(
                 child: Text(

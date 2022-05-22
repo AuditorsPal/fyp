@@ -156,7 +156,7 @@ class _AlertChatState extends State<AdviseeChat> {
                     padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     width: 200,
                     decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: Colors.grey,
                         borderRadius: BorderRadius.circular(8)),
                     margin: EdgeInsets.only(left: 10),
                         child: InkWell(
@@ -199,9 +199,12 @@ class _AlertChatState extends State<AdviseeChat> {
                   CircleAvatar(
                     backgroundColor: Colors.green,
                     radius: 25.0,
-                    child: Text(
-                      "${document.get("name")[0]}",
-                      style: TextStyle(fontSize: 30.0, color: Colors.white),
+                    child: Center(
+                      child: Text(
+                        "${document.get("name")[0]}",
+                        style: TextStyle(fontSize: 36.0, color: Colors.white),
+
+                      ),
                     ),
                   ),
                   Container(width: 10),
@@ -239,14 +242,6 @@ class _AlertChatState extends State<AdviseeChat> {
                       )
                   ),
                 ],
-              ),
-              Container(
-                child: Text("by: " + document.get("name"),
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 12,
-                        fontStyle: FontStyle.italic)),
-                margin: EdgeInsets.only(left: 50, top: 5, bottom: 5),
               ),
               Container(
                 child: Text(
@@ -314,9 +309,9 @@ class _AlertChatState extends State<AdviseeChat> {
               child: IconButton(
                 icon: Icon(Icons.file_copy_rounded),
                 onPressed: (){
-
+                  getImage();
                 },
-                color: Colors.green,
+                color: Colors.grey,
               ),
             ),
             color: Colors.white,
