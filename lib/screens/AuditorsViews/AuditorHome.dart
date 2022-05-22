@@ -1,12 +1,12 @@
 import 'package:auditorpal/Colors.dart';
 import 'package:auditorpal/model/userModel.dart';
-import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
+import 'package:auditorpal/screens/AuditorsViews/Dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import '../UserCheck.dart';
-import 'AllProjects.dart';
+import 'Dashboard.dart';
 import 'package:auditorpal/widgets/bottomnav.dart';
 import 'NavBaraud.dart';
 import 'SearchPage.dart';
