@@ -1,3 +1,5 @@
+import 'package:auditorpal/screens/AuditorsViews/project_detail.dart';
+import 'package:auditorpal/screens/OrganizationViews/project_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/controlller/readService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -147,7 +149,13 @@ class AllProjects_State extends State<AllProjects> {
                                 ),),
                               SizedBox(height: 15,),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              project_detail(project_id:  data.docs[index].id)));
+                                },
 
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.white,

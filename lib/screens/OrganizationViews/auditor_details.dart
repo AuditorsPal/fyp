@@ -1,5 +1,9 @@
+import 'package:auditorpal/controlller/writeService.dart';
 import 'package:auditorpal/screens/OrganizationViews/organizerChatHome.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 
 import '../../controlller/readService.dart';
@@ -22,8 +26,6 @@ class _AuditorDetailState extends State<AuditorDetail> {
   void initState() {
     email = Provider.of<UserModel>(context, listen: false).email;
     getIdByEmail();
-
-
   }
 
   getIdByEmail() async{
@@ -213,7 +215,53 @@ class _AuditorDetailState extends State<AuditorDetail> {
                             )
                         ),),
                       SizedBox(width: 20,),
-                      ElevatedButton(onPressed: () {},
+                      ElevatedButton(onPressed: () async {
+                        Loader.show(context,
+                            progressIndicator:
+                            CircularProgressIndicator());
+                        String project_id = await ReadService.getProjIDByOrgID(id);
+                        final response = await WriteService.hireAuditor(project_id, widget.auditor_id);
+                        if (response == "1") {
+                          Loader.hide();
+                          MotionToast.success(
+
+                            title: const Text(
+                              'Success',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            description: const Text(
+                                'Auditor Hired!'),
+                            animationType: ANIMATION.fromLeft,
+                            position: MOTION_TOAST_POSITION.top,
+                            barrierColor:
+                            Colors.black.withOpacity(0.3),
+                            width: 300,
+                            dismissable: true,
+                          ).show(context);
+                        } else {
+                          Loader.hide();
+
+                          MotionToast.error(
+                            title: const Text(
+                              'Error',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            description: const Text(
+                                'Something went wrong!'),
+                            animationType: ANIMATION.fromLeft,
+                            position: MOTION_TOAST_POSITION.top,
+                            barrierColor:
+                            Colors.black.withOpacity(0.3),
+                            width: 300,
+                            dismissable: true,
+                          ).show(context);
+                        }
+
+                      },
                         child: Text("Hire Auditor",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
