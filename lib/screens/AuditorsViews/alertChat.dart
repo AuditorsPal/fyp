@@ -283,7 +283,8 @@ class _AlertChatState extends State<AdviseeChat> {
               reverse: true,
               controller: listScrollController,
             );
-          } else {
+          }
+          else {
             return Center(child: Text("No message here yet..."));
           }
         } else {

@@ -1,3 +1,4 @@
+import 'package:auditorpal/controlller/writeService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,10 +23,12 @@ class _profileState extends State<profile> {
     email = Provider.of<UserModel>(context, listen: false).email;
     getIdByEmail();
   }
+  bool isAvailable = true;
 
   readProfile() async {
     profile = await ReadService.readProfile(id);
     setState(() {
+      isAvailable = profile["availability"];
       isData = true;
     });
   }
@@ -34,6 +37,21 @@ class _profileState extends State<profile> {
     id = await ReadService.getIdByEventNameAndEmail(email);
     readProfile();
   }
+
+Future<void> toggleSwitch(bool value) async {
+  if (isAvailable == false){
+    await WriteService.updateAvailability(id, true);
+    setState(() {
+      isAvailable = true;
+    });
+  }
+  else{
+    await WriteService.updateAvailability(id, false);
+    setState(() {
+      isAvailable = false;
+    });
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -138,13 +156,10 @@ class _profileState extends State<profile> {
                                                 fontSize: 17.0,
                                               ),
                                             ),
-                                            Text(
-                                              "No",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 17.0,
-                                              ),
-                                            ),
+                                            Switch(value: isAvailable , onChanged: toggleSwitch,activeColor: Colors.white,
+                                              activeTrackColor: Colors.green,
+                                              inactiveThumbColor: Colors.white,
+                                              inactiveTrackColor: Colors.grey,),
                                           ],
                                         ),
                                       ),

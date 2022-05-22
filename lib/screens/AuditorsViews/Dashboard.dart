@@ -6,7 +6,6 @@ import 'package:shimmer/shimmer.dart';
 import 'package:auditorpal/Colors.dart';
 
 import '../../widgets/cards.dart';
-import 'Allprojs.dart';
 
 class AllProjects extends StatefulWidget {
   const AllProjects({Key? key}) : super(key: key);
@@ -207,7 +206,7 @@ class AllProjects_State extends State<AllProjects> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllProjs()));
+                    MaterialPageRoute(builder: (context) => AllProjects()));
               },
               child: Text(
                 "Find Work",
