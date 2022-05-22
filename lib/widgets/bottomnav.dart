@@ -1,4 +1,5 @@
 import 'package:auditorpal/screens/AuditorsViews/auditorsAllchats.dart';
+import 'package:auditorpal/screens/AuditorsViews/ongoing_progress.dart';
 import 'package:auditorpal/screens/AuditorsViews/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/AuditorsViews/Dashboard.dart';
@@ -17,7 +18,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const List<Widget> _widgetOptions = <Widget>[
     AllProjects(),
     AllChats(),
-    progress(),
+    ongoing_project(),
    profile(),
   ];
 
