@@ -3,6 +3,8 @@ import 'package:auditorpal/screens/AuditorsViews/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:auditorpal/screens/AuditorsViews/Dashboard.dart';
 import 'package:auditorpal/screens/AuditorsViews/profile.dart';
+
+import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
 class BottomNavigation extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -15,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    AllProjects(),
+    DashBoard(),
     AllChats(),
     progress(),
    profile(),
