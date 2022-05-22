@@ -6,6 +6,8 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 
+import '../../Colors.dart';
+import '../login.dart';
 
 class MyRegisterorg extends StatefulWidget {
   final String userType;
@@ -23,8 +25,9 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
   final TextEditingController phonenoController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  final TextEditingController businessdetailController = TextEditingController();
-   String error = "";
+  final TextEditingController businessdetailController =
+      TextEditingController();
+  String error = "";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,26 +43,26 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
         ),
         body: Stack(
           children: [
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 30),
-              child: Text(
-                'Create\nAccount',
-                style: TextStyle(color: Colors.white, fontSize: 33),
-              ),
-            ),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28),
+                    top: MediaQuery.of(context).size.height * 0.08),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 35, top: 30),
+                      child: Text(
+                        'Create\nAccount',
+                        style: TextStyle(color: Colors.white, fontSize: 33),
+                      ),
+                    ),
                     Container(
                       margin: EdgeInsets.only(left: 35, right: 35),
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 30,
+                            height: 50,
                           ),
                           TextField(
                             controller: emailController,
@@ -234,40 +237,40 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
-                                                      SizedBox(
-                              height: 30,
-                            ),
-                            TextFormField(
-                              validator: (value) {
-                                if (passwordController.text.trim() != value) {
-                                  setState(() {
-                                    error = "Passwords Don't match.";
-                                  });
-                                }
-                              },
-                              style: TextStyle(color: Colors.white),
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  hintText: "Confirm Password",
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  )),
-                            ),
                           SizedBox(
-                            height: 40,
+                            height: 30,
+                          ),
+                          TextFormField(
+                            validator: (value) {
+                              if (passwordController.text.trim() != value) {
+                                setState(() {
+                                  error = "Passwords Don't match.";
+                                });
+                              }
+                            },
+                            style: TextStyle(color: Colors.white),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: "Confirm Password",
+                                hintStyle: TextStyle(color: Colors.white),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,7 +284,7 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
                               ),
                               CircleAvatar(
                                 radius: 30,
-                                backgroundColor: Color(0xff4c505b),
+                                backgroundColor:  MyColors.blueColor,
                                 child: IconButton(
                                     color: Colors.white,
                                     onPressed: () async {
@@ -301,17 +304,17 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
                                         if (widget.userType == "organization") {
                                           response =
                                               await WriteService.addOrganizer(
-                                                  email: emailController.text
-                                                      .trim(),
-                                                        name: nameController.text.trim(),
-                                              phoneno:
-                                                  phonenoController.text.trim(),
-                                              businessdetail: businessdetailController
-                                                  .text
-                                                  .trim(),
-                                              ntn: ntnController.text.trim(),
-                                              address: addressController.text
-                                                  .trim(),);
+                                            email: emailController.text.trim(),
+                                            name: nameController.text.trim(),
+                                            phoneno:
+                                                phonenoController.text.trim(),
+                                            businessdetail:
+                                                businessdetailController.text
+                                                    .trim(),
+                                            ntn: ntnController.text.trim(),
+                                            address:
+                                                addressController.text.trim(),
+                                          );
                                         }
 
                                         if (response == '1') {
@@ -362,14 +365,20 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
                             ],
                           ),
                           SizedBox(
-                            height: 40,
+                            height: 10,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'login');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => MyLogin(
+                                              userType: widget.userType,
+                                            )),
+                                  );
                                 },
                                 child: Text(
                                   'Sign In',
@@ -377,7 +386,7 @@ class _MyRegisterorgState extends State<MyRegisterorg> {
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       color: Colors.white,
-                                      fontSize: 18),
+                                      fontSize: 20),
                                 ),
                                 style: ButtonStyle(),
                               ),
