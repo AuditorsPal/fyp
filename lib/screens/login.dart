@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'AuditorsViews/signupaud.dart';
 import '../model/userModel.dart';
 import 'OrganizationViews/signuporg.dart';
+import 'package:auditorpal/Colors.dart';
 
 class MyLogin extends StatefulWidget {
   final String userType;
@@ -39,12 +40,12 @@ class _MyLoginState extends State<MyLogin> {
                 padding: EdgeInsets.only(left: 35, top: 130),
                 child: widget.userType == "auditor"
                     ? Text(
-                        'Welcome\nAuditor',
-                        style: TextStyle(color: Colors.white, fontSize: 33),
+                        '\nWelcome\nAuditor',
+                        style: TextStyle(color: Colors.white, fontSize: 34),
                       )
                     : Text(
-                        'Welcome\nOrganization',
-                        style: TextStyle(color: Colors.white, fontSize: 33),
+                        '\nWelcome\nOrganization',
+                        style: TextStyle(color: Colors.white, fontSize: 34),
                       ),
               ),
               SingleChildScrollView(
@@ -98,7 +99,7 @@ class _MyLoginState extends State<MyLogin> {
                                 ),
                                 CircleAvatar(
                                   radius: 30,
-                                  backgroundColor: Color(0xff4c505b),
+                                  backgroundColor: MyColors.blueColor,
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () async {

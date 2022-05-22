@@ -10,7 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../controlller/readService.dart';
 import 'SearchPage.dart';
 import 'BottonNavBar.dart';
-import 'package:auditorpal/screens/AuditorsViews/NavBaraud.dart';
+import 'NavBarorg.dart';
 
 class OrganizationHome extends StatefulWidget {
   const OrganizationHome({Key? key}) : super(key: key);

@@ -35,21 +35,19 @@ class StartState extends State<SplashScreen> {
       body: Stack(
         children: [
           Container(
+             
             decoration: BoxDecoration(
+
               image: DecorationImage(
                   image: AssetImage('assets/images/login.png'),
                   fit: BoxFit.cover),
             ),
           ),
           Center(
-            child: Text(
-              "AuditorsPal",
-              style: TextStyle(
-                fontSize: 60,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
+            child:  Container(
+              
+              child: Image.asset('assets/images/AuditorsPal.png',    height: 380,    width: 250,)
               ),
-            ),
           )
         ],
       ),

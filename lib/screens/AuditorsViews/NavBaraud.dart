@@ -34,17 +34,17 @@ class _NavBarState extends State<NavBar> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://www.teahub.io/photos/full/255-2555204_iphone-black-blur-background.jpg'),
+                image: AssetImage(
+              'assets/images/banner2.jpg'),
               ),
             ),
             accountName: Text(""),
             accountEmail: Text('${user}'),
             currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.redAccent,
-              minRadius: 100.0,
+              backgroundColor:  MyColors.lighttealColor,
+              minRadius: 500.0,
               child: CircleAvatar(
-                radius: 80.0,
+                radius: 500.0,
                 child: Text(
                   "${user[0]}",
                   style: TextStyle(fontSize: 50.0),
@@ -55,7 +55,7 @@ class _NavBarState extends State<NavBar> {
           ListTile(
             leading: Icon(
               Icons.settings,
-              color: Colors.black,
+              color: Color.fromARGB(255, 68, 68, 68),
             ),
             title: const Text('Settings'),
             onTap: () {
@@ -67,7 +67,7 @@ class _NavBarState extends State<NavBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.person, color: Colors.black),
+            leading: Icon(Icons.person, color: Color.fromARGB(255, 68, 68, 68)),
             title: const Text('Profile'),
             onTap: () {
               
@@ -82,7 +82,7 @@ class _NavBarState extends State<NavBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout, color: Colors.black),
+            leading: Icon(Icons.logout, color: Color.fromARGB(255, 68, 68, 68)),
             title: const Text('Logout'),
             onTap: () async {
               context.read<AuthenticationService>().signOut();

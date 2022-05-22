@@ -6,6 +6,9 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 
+import '../../Colors.dart';
+import '../login.dart';
+
 class MyRegister extends StatefulWidget {
   final String userType;
   const MyRegister({Key? key, required this.userType}) : super(key: key);
@@ -42,7 +45,7 @@ class _MyRegisterState extends State<MyRegister> {
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28),
+                    top: MediaQuery.of(context).size.height * 0.08),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -60,7 +63,7 @@ class _MyRegisterState extends State<MyRegister> {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 30,
+                              height: 50,
                             ),
                             TextFormField(
                               controller: emailController,
@@ -244,7 +247,7 @@ class _MyRegisterState extends State<MyRegister> {
                             ),
                             Text(error),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -258,7 +261,7 @@ class _MyRegisterState extends State<MyRegister> {
                                 ),
                                 CircleAvatar(
                                   radius: 30,
-                                  backgroundColor: Color(0xff4c505b),
+                                  backgroundColor:  MyColors.blueColor,
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () async {
@@ -290,7 +293,7 @@ class _MyRegisterState extends State<MyRegister> {
                                               cnic: cnicController.text.trim(),
 
                                             );
-                                          } 
+                                          }
 
                                           if (response == '1') {
                                             Navigator.pop(
@@ -341,14 +344,20 @@ class _MyRegisterState extends State<MyRegister> {
                               ],
                             ),
                             SizedBox(
-                              height: 40,
+                              height: 10,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, 'login');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MyLogin(
+                                                userType: widget.userType,
+                                              )),
+                                    );
                                   },
                                   child: Text(
                                     'Sign In',
@@ -356,7 +365,7 @@ class _MyRegisterState extends State<MyRegister> {
                                     style: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: Colors.white,
-                                        fontSize: 18),
+                                        fontSize: 20),
                                   ),
                                   style: ButtonStyle(),
                                 ),

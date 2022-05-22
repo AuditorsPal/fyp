@@ -6,7 +6,7 @@ import '../../model/userModel.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import 'package:auditorpal/Colors.dart';
 import 'org_profile.dart';
-import 'org_profile.dart';
+
 
 class NavBar extends StatefulWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -35,8 +35,8 @@ class _NavBarState extends State<NavBar> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://www.teahub.io/photos/full/255-2555204_iphone-black-blur-background.jpg'),
+                image: AssetImage(
+              'assets/images/banner2.jpg'),
               ),
             ),
             accountName: Text(""),
