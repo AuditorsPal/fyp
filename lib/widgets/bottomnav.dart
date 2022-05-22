@@ -1,7 +1,7 @@
 import 'package:auditorpal/screens/AuditorsViews/auditorsAllchats.dart';
 import 'package:auditorpal/screens/AuditorsViews/progress.dart';
 import 'package:flutter/material.dart';
-import 'package:auditorpal/screens/AuditorsViews/AllProjects.dart';
+import 'package:auditorpal/screens/AuditorsViews/Dashboard.dart';
 import 'package:auditorpal/screens/AuditorsViews/profile.dart';
 class BottomNavigation extends StatefulWidget {
   @override

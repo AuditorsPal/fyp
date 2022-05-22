@@ -34,15 +34,7 @@ class StartState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-             
-            decoration: BoxDecoration(
-
-              image: DecorationImage(
-                  image: AssetImage('assets/images/login.png'),
-                  fit: BoxFit.cover),
-            ),
-          ),
+       
           Center(
             child:  Container(
               

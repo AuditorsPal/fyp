@@ -83,7 +83,14 @@ class WriteService {
       return e.message;
     }
   }
-
+static  Future<String?> updateStatus(String id, String value)async{
+    try {
+      db.collection("Project").doc(id).update({"stage": value});
+      return "1";
+    } on FirebaseException catch (e) {
+      return e.message;
+    }
+  }
   static Future<String?> approveTicket(String id) async {
     try {
       db.collection("tickets").doc(id).update({"vStatus": "true"});

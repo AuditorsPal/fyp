@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:auditorpal/controlller/WriteService.dart';
+import '../../Colors.dart';
+import 'package:auditorpal/controlller/readService.dart';
+
+import '../../model/userModel.dart';
 
 class progress extends StatefulWidget {
   const progress({Key? key}) : super(key: key);
@@ -8,10 +15,66 @@ class progress extends StatefulWidget {
 }
 
 class _progressState extends State<progress> {
+  String id = "";
   int _counter = 0;
+  double progressvalue = 0;
+  String value = "No progress";
+  
+  String email = "";
+    void initState() {
+    email = Provider.of<UserModel>(context, listen: false).email;
+    getIdByEmail();
+  }
 
+  
+  
+  getIdByEmail() async {
+    id = await ReadService.getOrgIdByEmail(email);
+  }
   dynamic _incrementCounter() {
-    if (_counter == 3) {
+      if (progressvalue <= 7) {
+      progressvalue++;
+    }
+    if (_counter == 0 && progressvalue == 1) {
+      setState(() {
+        value = "Audit Planning";
+        _counter++;
+      });
+    }
+    if (_counter == 1 && progressvalue == 2) {
+      setState(() {
+        value = "Understanding Internal Controls";
+        _counter++;
+      });
+    }
+    if (_counter == 2 && progressvalue == 3) {
+      setState(() {
+        value = "Risk Assessment";
+        _counter++;
+      });
+    }
+    if (_counter == 3 && progressvalue == 4) {
+      setState(() {
+        value = " Controls Testing";
+        _counter++;
+      });
+    }
+    if (_counter == 4 && progressvalue == 5) {
+      setState(() {
+        value = "Substantive Procedures";
+        _counter++;
+      });
+    }
+    if (_counter == 5 && progressvalue == 6) {
+      setState(() {
+        value = "Analytical Procedures";
+        _counter++;
+      });
+    }
+    if (_counter == 6 && progressvalue == 7) {
+      setState(() {
+        value = "Finalizing the Audit and Report";
+      });
       return showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
@@ -23,15 +86,17 @@ class _progressState extends State<progress> {
                       child: const Text('OK'),
                     )
                   ]));
-    } else {
-      setState(() {
-        _counter++;
-      });
     }
   }
 
   dynamic _decrementCounter() {
+    if (progressvalue != 0) {
+      progressvalue--;
+    }
     if (_counter == 0) {
+      setState(() {
+        value = "No progress";
+      });
       return showDialog<String>(
           context: context,
           builder: (BuildContext context) => AlertDialog(
@@ -43,11 +108,52 @@ class _progressState extends State<progress> {
                       child: const Text('OK'),
                     )
                   ]));
-    } else {
+    }
+
+    if (_counter == 0) {
       setState(() {
+        value = "Audit Planning";
         _counter--;
       });
     }
+    if (_counter == 1) {
+      setState(() {
+        value = "Understanding Internal Controls";
+        _counter--;
+      });
+    }
+    if (_counter == 2) {
+      setState(() {
+        value = "Risk Assessment";
+        _counter--;
+      });
+    }
+    if (_counter == 3) {
+      setState(() {
+        value = " Controls Testing";
+        _counter--;
+      });
+    }
+    if (_counter == 4) {
+      setState(() {
+        value = "Analytical Procedures";
+        _counter--;
+      });
+    }
+    if (_counter == 5) {
+      setState(() {
+        value = "Substantive Procedures";
+        _counter--;
+      });
+    }
+    if (_counter == 6) {
+      setState(() {
+        value = "Finalizing Audit and Report";
+        _counter--;
+      });
+    }
+
+    
   }
 
   @override
@@ -56,21 +162,17 @@ class _progressState extends State<progress> {
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal[600],
-        title: Center(child: Text("Project Progress")),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Project is in Stage:',
+              'Project is in Stage ' + '$_counter' + ':',
               style: const TextStyle(fontSize: 20),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline1,
+              value,
+              style: Theme.of(context).textTheme.headline5,
             ),
             Column(
               children: [
@@ -78,11 +180,28 @@ class _progressState extends State<progress> {
                   padding: EdgeInsets.fromLTRB(50, 15, 50, 15),
                   child: Column(
                     children: [
-                      LinearProgressIndicator(
-                        backgroundColor: Colors.black,
-                        valueColor: AlwaysStoppedAnimation(Colors.green),
-                        minHeight: 7,
-                      ),
+                      StepProgressIndicator(
+                        totalSteps: 6,
+                        currentStep: _counter,
+                        size: 40,
+                        selectedColor: MyColors.blueColor,
+                        unselectedColor: MyColors.mistColor,
+                        customStep: (index, color, _) =>
+                            color == MyColors.blueColor
+                                ? Container(
+                                    color: color,
+                                    child: Icon(
+                                      Icons.check,
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : Container(
+                                    color: color,
+                                    child: Icon(
+                                      Icons.remove,
+                                    ),
+                                  ),
+                      )
                     ],
                   ),
                 ),
@@ -97,7 +216,7 @@ class _progressState extends State<progress> {
               children: [
                 ElevatedButton(
                   onPressed: _incrementCounter,
-                  style: ElevatedButton.styleFrom(primary: Colors.teal[600]),
+                  style: ElevatedButton.styleFrom(primary: MyColors.blueColor,),
                   child: const Text('Next'),
                 ),
               ],
@@ -108,9 +227,12 @@ class _progressState extends State<progress> {
       floatingActionButton: FloatingActionButton(
         onPressed: _decrementCounter,
         tooltip: 'Decrement',
-        backgroundColor: Colors.teal[600],
+        backgroundColor: MyColors.blueColor,
         child: const Icon(Icons.backspace),
       ),
     );
   }
 }
+
+
+
