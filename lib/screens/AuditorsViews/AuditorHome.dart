@@ -26,7 +26,9 @@ class _AuditorHomeState extends State<AuditorHome> {
 
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Auditor"),
+          title: Image.asset('assets/images/AuditorsPal2.png',fit:BoxFit.cover,
+          height:160.00,
+          width:160.00),
           backgroundColor: Color.fromARGB(255, 38, 146, 173),
           actions: [
             IconButton(

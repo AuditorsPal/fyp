@@ -159,7 +159,7 @@ class _AllChatsState extends State<OrgAllChats> {
                               backgroundColor: Color.fromARGB(255, 38, 146, 173),
                               radius: 25.0,
                               child: Text(data.docs[index]["name"][0],
-                                  style: TextStyle(fontSize: 30.0)),
+                                  style: TextStyle(fontSize: 30.0, color: Colors.white)),
                             ),
                             title: Text(
                               data.docs[index]['name'],

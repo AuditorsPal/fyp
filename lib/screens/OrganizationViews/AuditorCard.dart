@@ -139,7 +139,8 @@ class _Auditor_listState extends State<Auditor_list> {
                           backgroundColor: Color.fromARGB(255, 38, 146, 173),
                           radius: 40.0,
                           child: Text(data.docs[index]["name"][0],
-                              style: TextStyle(fontSize: 40.0)),
+                              
+                              style: TextStyle(fontSize: 40.0,color:Colors.white )),
                         ),
                         SizedBox(height: 10,),
                         Text(data.docs[index]['name'],

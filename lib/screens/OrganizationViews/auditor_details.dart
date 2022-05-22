@@ -6,6 +6,7 @@ import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 
+import '../../Colors.dart';
 import '../../controlller/readService.dart';
 import '../../model/userModel.dart';
 
@@ -42,11 +43,12 @@ class _AuditorDetailState extends State<AuditorDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[500],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text("Profile"),
+               title: Image.asset('assets/images/AuditorsPal2.png',fit:BoxFit.cover, height:150, width: 150),
+
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 38, 146, 173),
       ),
       body: isData == false ? Center(child: CircularProgressIndicator()): SingleChildScrollView(
         child: Stack(
@@ -55,7 +57,11 @@ class _AuditorDetailState extends State<AuditorDetail> {
               height: 250,
               width: double.infinity,
               child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.grey[800])),
+                  decoration: BoxDecoration(gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [MyColors.bluegreenColor, MyColors.mistColor],
+                      ),)),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(16.0, 50.0, 16.0, 16.0),
@@ -69,7 +75,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                           top: 16.0,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.lightBlue[900],
+                          color: MyColors.blueColor,
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Column(
@@ -203,7 +209,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.blue,
+                            color: MyColors.blueColor,
                           ),),
                         style: ElevatedButton.styleFrom(
                             primary: Colors.white,
@@ -266,7 +272,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
-                            color: Colors.blue,
+                            color: MyColors.blueColor,
                           ),),
                         style: ElevatedButton.styleFrom(
                             primary: Colors.white,

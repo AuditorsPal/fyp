@@ -12,7 +12,7 @@ class OrganizerChatHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Chatting... "),),
+      appBar:AppBar(title: Text("Chat"),),
       body:  OrganizerChat( otherUserID:otherUserID, currentUserID: currentUserID, email: email,),
     );
   }

@@ -41,7 +41,7 @@ class _NavBarState extends State<NavBar> {
             accountName: Text(""),
             accountEmail: Text('${user}'),
             currentAccountPicture: CircleAvatar(
-              backgroundColor:  MyColors.lighttealColor,
+              backgroundColor: Color.fromARGB(255, 38, 146, 173),
               minRadius: 500.0,
               child: CircleAvatar(
                 radius: 500.0,
