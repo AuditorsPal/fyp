@@ -9,6 +9,7 @@ import '../../widgets/cards.dart';
 import '../AuditorsViews/AllProjects.dart';
 import 'Allprojs.dart';
 
+
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
 
@@ -208,7 +209,7 @@ class DashBoard_State extends State<DashBoard> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AllProjs()));
+                    MaterialPageRoute(builder: (context) => AllProjects()));
               },
               child: Text(
                 "Find Work",

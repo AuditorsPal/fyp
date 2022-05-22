@@ -69,11 +69,30 @@ print(data);
     }
   }
 
+
   static Future getProjbyOrgID(String ?id) async {
     try {
       var data;
       print("check");
       final result = db.collection("Project").where("organizerID",isEqualTo: id);
+      var querySnapshots = await result.get();
+      for (var snapshot in querySnapshots.docs) {
+        data = snapshot.data();
+      }
+      print(data);
+
+      return data;
+    }
+    on FirebaseException catch (e) {
+      return "1";
+    }
+  }
+
+  static Future getProjbyAuditorID(String ?id) async {
+    try {
+      var data;
+      print("check");
+      final result = db.collection("Project").where("auditorID",isEqualTo: id);
       var querySnapshots = await result.get();
       for (var snapshot in querySnapshots.docs) {
         data = snapshot.data();
@@ -147,7 +166,7 @@ print(data);
 
   static Stream<QuerySnapshot>? readAllAuditors(){
     try {
-      final result = db.collection("Auditor").snapshots();
+      final result = db.collection("Auditor").where("availability", isEqualTo: true).snapshots();
       return result;
     }
     on FirebaseException catch (e) {

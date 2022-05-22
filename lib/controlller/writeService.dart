@@ -4,7 +4,7 @@ class WriteService {
   static FirebaseFirestore db = FirebaseFirestore.instance;
 
   static Future<String?> addUser({required String email , required String name, required String phoneno, required String experience,required String cnic}) async {
-    final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "number_of_projects": '0', "total_earning": '0', "rating": '0'};
+    final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "number_of_projects": '0', "total_earning": '0', "rating": '0', "availability": true};
     try {
       await db.collection("Auditor").add(user);
       return "1";
@@ -103,6 +103,7 @@ static  Future<String?> updateStatus(String id, String value)async{
   static Future<String?> hireAuditor(String id, String auditor_id) async {
     try {
       db.collection("Project").doc(id).update({"auditorID": auditor_id});
+      db.collection("Auditor").doc(auditor_id).update({"number_of_projects": 1});
       return "1";
     } on FirebaseException catch (e) {
       return e.message;
@@ -117,4 +118,15 @@ static  Future<String?> updateStatus(String id, String value)async{
       return e.message;
     }
   }
+
+  static Future<String?> updateAvailability(String id, bool value) async {
+    try {
+      db.collection("Auditor").doc(id).update({"availability": value});
+      return "1";
+    } on FirebaseException catch (e) {
+      return e.message;
+    }
+  }
 }
+
+

@@ -49,8 +49,7 @@ class _AllChatsState extends State<OrgAllChats> {
 
     try {
       final result = db
-          .collection("Auditor")
-          .snapshots();
+          .collection("Auditor").where("availability", isEqualTo: true).snapshots();
 
       return result;
     } on FirebaseException catch (e) {
