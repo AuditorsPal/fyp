@@ -164,11 +164,12 @@ class _AllChatsState extends State<OrgAllChats> {
                             ),
                             title: Text(
                               data.docs[index]['name'],
-                              style: TextStyle(fontSize: 30),
+                              style: TextStyle(fontSize: 20,
+                              fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(
                               data.docs[index]['email'],
-                              style: TextStyle(fontSize: 30),
+                              style: TextStyle(fontSize: 16),
                             ),
                             onTap: () {
                               Navigator.push(

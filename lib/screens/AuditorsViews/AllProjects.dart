@@ -115,14 +115,16 @@ class AllProjects_State extends State<AllProjects> {
                   itemBuilder: (context, index) {
                     return Card(
                         color: Colors.white70,
-                        margin: EdgeInsets.all(30),
+                        margin: EdgeInsets.fromLTRB(30, 15, 30, 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                         elevation: 4,
                         child: Container(
+                          constraints: BoxConstraints(
+                            minHeight: 200,
+                          ),
                           width: 300,
-                          height: 225,
                           margin: EdgeInsets.all(20),
                           child: Column(
                             children: [
@@ -134,10 +136,10 @@ class AllProjects_State extends State<AllProjects> {
                                   decoration: TextDecoration.underline,
                                 ),),
                               SizedBox(height: 10,),
-                              Text("Here is the basic description of the project and the details about the type of company business. This will help the auditors get the basic info about the auditing project they are supposed to do...",
+                              Text(data.docs[index]["details"],
                               ),
                               SizedBox(height: 10,),
-                              Text("Budget: Rs. 50,000",
+                              Text("Budget: Rs. " + data.docs[index]["budget"],
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -156,7 +158,7 @@ class AllProjects_State extends State<AllProjects> {
                                         side: BorderSide(color: Colors.black,)
                                     )
                                 ),
-                                child: Text("View Profile",
+                                child: Text("Project details",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,

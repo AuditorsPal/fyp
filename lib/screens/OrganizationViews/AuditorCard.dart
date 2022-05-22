@@ -152,7 +152,7 @@ class _Auditor_listState extends State<Auditor_list> {
                         ),),
                         SizedBox(height: 15,),
                       RatingBar.builder(
-                        initialRating: 3,
+                        initialRating: double.parse(data.docs[index]["rating"]),
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
