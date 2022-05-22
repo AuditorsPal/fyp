@@ -23,21 +23,21 @@ class WriteService {
     }
   }
 
-  static Future<String?> createEvent(
-      {required String name,
-      required String description,
+  static Future<String?> createProject(
+      {required String title,
+      required String details,
       required String date,
-      required String email,
-      required String price}) async {
+      required String budget,
+      required String orgID}) async {
     final event = <String, dynamic>{
-      "name": name,
-      "description": description,
+      "title": title,
+      "details": details,
       "date": date,
-      "organizerEmail": email,
-      "price": price
+      "organizerID": orgID,
+      "budget": budget
     };
     try {
-      await db.collection("events").add(event);
+      await db.collection("Project").add(event);
       return "1";
     } on FirebaseException catch (e) {
       return e.message;

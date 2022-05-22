@@ -1,4 +1,5 @@
 import 'package:auditorpal/screens/OrganizationViews/org_profile.dart';
+import 'package:auditorpal/screens/OrganizationViews/project_detail.dart';
 import 'package:flutter/material.dart';
 import 'AuditorCard.dart';
 import 'org_profile.dart';
@@ -18,10 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   static List<Widget> _widgetOptions = <Widget>[
     Auditor_list(),
     OrgAllChats(),
-    Text(
-      "HOLIDAYS",
-      style: optionStyle,
-    ),
+    project_detail(),
     org_profile(),
   ];
 
