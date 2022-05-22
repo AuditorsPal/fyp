@@ -19,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   static List<Widget> _widgetOptions = <Widget>[
     Auditor_list(),
     OrgAllChats(),
-    project_detail(),
+    project_details(),
     org_profile(),
   ];
 

@@ -1,49 +1,48 @@
-import 'package:auditorpal/screens/AuditorsViews/profile.dart';
-import 'package:auditorpal/screens/OrganizationViews/projectupload.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:auditorpal/Colors.dart';
-import '../../controlller/readService.dart';
-import '../../model/userModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../Colors.dart';
+import '../../controlller/readService.dart';
+import '../../model/userModel.dart';
 
-class project_details extends StatefulWidget {
+class project_detail extends StatefulWidget {
+  final  project_id;
+  const project_detail({Key? key, required this.project_id}) : super(key: key);
   @override
-  State<project_details> createState() => _project_detailsState();
+  State<project_detail> createState() => _project_detailState();
 }
 
-class _project_detailsState extends State<project_details> {
+class _project_detailState extends State<project_detail> {
   late final project;
+  bool isData=false;
   String email = "";
-  String proj_id = "";
-  String id = "";
-  bool isData = false;
-
+  String id="";
   @override
   void initState() {
-    email = Provider.of<UserModel>(context, listen: false).email;
-    getIdByEmail();
+    getId();
+
   }
 
-  getIdByEmail() async {
-    id = await ReadService.getOrgIdByEmail(email);
-    readProject();
+  getId() async{
+    id= widget.project_id;
+    await readProfile();
   }
-
-  readProject() async {
-    project = await ReadService.getProjbyOrgID(id);
+  readProfile() async{
+    project=await ReadService.readProject(widget.project_id);
     setState(() {
-      isData = true;
+      isData=true;
     });
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Project Details"),
+        backgroundColor: Color.fromARGB(255, 38, 146, 173),
+        centerTitle: true,
+      ),
       body: isData == false ? Center(child: CircularProgressIndicator()): ListView(children: [
         SizedBox(height: 25.0),
         Padding(
@@ -135,27 +134,6 @@ class _project_detailsState extends State<project_details> {
         TableCalendar(
             focusedDay: DateTime.now(), firstDay: DateTime.utc(2010, 10, 16), lastDay: DateTime.utc(2030, 3, 14)),
 
-        SizedBox(height: 40.0),
-        Center(
-            child: Container(
-                width: MediaQuery.of(context).size.width - 225.0,
-                height: 50.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  color: Color.fromARGB(255, 38, 146, 173),),
-                child: Center(
-                    child: Text(
-                      'Payment',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )
-                ),
-
-            ),
-
-        ),
         SizedBox(height: 40.0),
 
       ]),

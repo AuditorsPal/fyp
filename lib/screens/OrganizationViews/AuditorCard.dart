@@ -136,7 +136,10 @@ class _Auditor_listState extends State<Auditor_list> {
                     child: Column(
                       children: [
                         CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 38, 146, 173),
                           radius: 40.0,
+                          child: Text(data.docs[index]["name"][0],
+                              style: TextStyle(fontSize: 40.0)),
                         ),
                         SizedBox(height: 10,),
                         Text(data.docs[index]['name'],

@@ -22,6 +22,7 @@ class ProjectUpload extends StatefulWidget {
 class _ProjectUploadState extends State<ProjectUpload> {
 
   final TextEditingController titleController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController detailsController = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
   String date = '';
@@ -63,8 +64,33 @@ class _ProjectUploadState extends State<ProjectUpload> {
                             height: 50,
                           ),
                           TextField(
+                            controller: emailController,
+                            style: TextStyle(color: Colors.black),
+                            decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                hintText: " Email Address",
+                                hintStyle: TextStyle(color: Colors.black),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          TextField(
                             controller: titleController,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -79,7 +105,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                                   ),
                                 ),
                                 hintText: "Project Title",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.black),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -89,7 +115,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                           ),
                           TextFormField(
                             controller: detailsController,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -104,7 +130,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                                   ),
                                 ),
                                 hintText: "Project Details",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.black),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -114,7 +140,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                           ),
                           TextFormField(
                             controller: budgetController,
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -129,7 +155,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                                   ),
                                 ),
                                 hintText: "Budget",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: TextStyle(color: Colors.black),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 )),
@@ -156,7 +182,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                               suffixIcon: Icon(Icons.event_note),
                               labelText: 'Due Date',
                               labelStyle: GoogleFonts.mulish(
-                                textStyle: TextStyle(color: Colors.white),
+                                textStyle: TextStyle(color: Colors.black),
                               ),
                             ),
                             mode: DateTimeFieldPickerMode.date,
@@ -182,6 +208,7 @@ class _ProjectUploadState extends State<ProjectUpload> {
                                   String? response;
                                   response =
                                       await WriteService.createProject(
+                                        email: emailController.text.trim(),
                                       title: titleController.text.trim(),
                                   details: detailsController.text.trim(),
                                   date:
@@ -189,7 +216,9 @@ class _ProjectUploadState extends State<ProjectUpload> {
                                   budget:
                                   budgetController.text
                                       .trim(),
-                                  orgID: widget.org_id);
+                                  orgID: widget.org_id,
+                                      auditorID: "");
+
 
                                   if (response == '1') {
                                     Navigator.pop(
