@@ -129,27 +129,6 @@ Future<void> toggleSwitch(bool value) async {
                                         child: Column(
                                           children: <Widget>[
                                             Text(
-                                              "Rating",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 17.0,
-                                              ),
-                                            ),
-                                            Text(
-                                              profile["rating"] + "/5",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 17.0,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //Stat 2
-                                      Expanded(
-                                        child: Column(
-                                          children: <Widget>[
-                                            Text(
                                               "Availability",
                                               style: TextStyle(
                                                 color: Colors.white,

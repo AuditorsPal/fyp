@@ -91,7 +91,7 @@ class _org_profileState extends State<org_profile> {
                                         ListTile(
                                           contentPadding: EdgeInsets.all(0),
                                           title: Text(
-                                            "Country",
+                                            "Pakistan",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 15,
@@ -131,7 +131,7 @@ class _org_profileState extends State<org_profile> {
                                         ProjectUpload(org_id: id)));
                           },
                           child: Text(
-                            "Upload Project",
+                            "Create Project",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

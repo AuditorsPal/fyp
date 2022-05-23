@@ -152,24 +152,13 @@ class _Auditor_listState extends State<Auditor_list> {
                         SizedBox(height: 10,),
                         Text("Experience: " + data.docs[index]['experience'],
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                         ),),
                         SizedBox(height: 15,),
-                      RatingBar.builder(
-                        initialRating: double.parse(data.docs[index]["rating"]),
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                        itemBuilder: (context, _) => Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
-                      ),
+                        Text("No. of Projects done: " + data.docs[index]['number_of_projects'],
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),),
                         SizedBox(height: 15,),
 
                         ElevatedButton(
