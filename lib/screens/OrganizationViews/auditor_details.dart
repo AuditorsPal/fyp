@@ -112,27 +112,6 @@ class _AuditorDetailState extends State<AuditorDetail> {
                             ),
                             Row(
                               children: <Widget>[
-                                //Stat 1
-                                Expanded(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Text(
-                                        "Rating",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                      Text(profile["rating"] +
-                                        "/5",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 17.0,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                                 //Stat 2
                                 Expanded(
                                   child: Column(
@@ -144,13 +123,15 @@ class _AuditorDetailState extends State<AuditorDetail> {
                                           fontSize: 17.0,
                                         ),
                                       ),
-                                      Text(
-                                        "No",
+                                      profile["availability"] ? Text("Yes",
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 17.0,
-                                        ),
-                                      ),
+                                        ),) : Text("No",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 17.0,
+                                        ),)
                                     ],
                                   ),
                                 ),

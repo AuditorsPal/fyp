@@ -12,7 +12,8 @@ class OrganizerChatHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Chat"),),
+      appBar:AppBar(title: Text("Chat"),
+      backgroundColor: Color.fromARGB(255, 38, 146, 173),),
       body:  OrganizerChat( otherUserID:otherUserID, currentUserID: currentUserID, email: email,),
     );
   }

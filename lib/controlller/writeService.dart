@@ -2,7 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class WriteService {
   static FirebaseFirestore db = FirebaseFirestore.instance;
-
+  static Future<String?> deleteProject(String id) async {
+    try {
+      db.collection("Project").doc(id).delete();
+      return "1";
+    } on FirebaseException catch (e) {
+      return e.message;
+    }
+  }
   static Future<String?> addUser({required String email , required String name, required String phoneno, required String experience,required String cnic}) async {
     final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "number_of_projects": '0', "total_earning": '0', "rating": '0', "availability": true};
     try {
@@ -100,10 +107,10 @@ static  Future<String?> updateStatus(String id, String value)async{
     }
   }
 
-  static Future<String?> hireAuditor(String id, String auditor_id) async {
+  static Future<String?> hireAuditor(String id, String auditorId) async {
     try {
-      db.collection("Project").doc(id).update({"auditorID": auditor_id});
-      db.collection("Auditor").doc(auditor_id).update({"number_of_projects": 1});
+      db.collection("Project").doc(id).update({"auditorID": auditorId});
+      db.collection("Auditor").doc(auditorId).update({"number_of_projects": "1"});
       return "1";
     } on FirebaseException catch (e) {
       return e.message;
@@ -127,6 +134,10 @@ static  Future<String?> updateStatus(String id, String value)async{
       return e.message;
     }
   }
+
+
+
+
 }
 
 
