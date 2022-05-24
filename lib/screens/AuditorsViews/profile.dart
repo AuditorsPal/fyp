@@ -1,5 +1,6 @@
 import 'package:auditorpal/controlller/writeService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../controlller/readService.dart';
@@ -63,7 +64,7 @@ Future<void> toggleSwitch(bool value) async {
               child: Stack(
                 children: <Widget>[
                   SizedBox(
-                    height: 250,
+                    height: 275,
                     width: double.infinity,
                     child: DecoratedBox(
                         decoration: BoxDecoration(
@@ -179,7 +180,22 @@ Future<void> toggleSwitch(bool value) async {
                           ],
                         ),
                         SizedBox(
-                          height: 40.0,
+                          height: 30.0,
+                        ),
+                        RatingBarIndicator(
+                          rating: double.parse(
+                              profile["rating"].toString()),
+                          itemCount: 5,
+                          itemPadding:
+                          const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star_rounded,
+                            color: Colors.amber,
+                            size: 5,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30.0,
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -246,6 +262,7 @@ Future<void> toggleSwitch(bool value) async {
                           ),
                         ),
                       ],
+
                     ),
                   ),
                 ],

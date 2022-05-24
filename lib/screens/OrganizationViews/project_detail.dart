@@ -153,6 +153,24 @@ class _project_detailsState extends State<project_details> {
                       style: TextStyle(color: Colors.blueGrey, fontSize: 20.0),
                     ),
                   ),
+                  SizedBox(height: 20.0),
+
+                  Center(
+                    child: Text(
+                      'Project Progress',
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 38, 146, 173)),
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Center(
+                    child: Text(
+                      "Project is in Stage 2: Risk Assessment",
+                      style: TextStyle(color: Colors.blueGrey, fontSize: 20.0),
+                    ),
+                  ),
                   SizedBox(height: 10.0),
                   TableCalendar(
                       focusedDay: DateTime.now(),
