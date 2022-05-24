@@ -77,29 +77,6 @@ class _AlertChatState extends State<AdviseeChat> {
     }
   }
 
-  // Future getImageCamera() async {
-  //   try {
-  //     List<Media>? res = await ImagesPicker.openCamera(
-  //       pickType: PickType.image,
-  //       quality: 0.8,
-  //       maxSize: 800,
-  //       maxTime: 800,
-  //       // maxSize: 500,
-  //     );
-  //     if (res != null) {
-  //       print(res[0].path);
-  //
-  //       setState(() {
-  //         isLoading = true;
-  //       });
-  //       uploadFile(res[0].path);
-  //     }
-  //   } on PlatformException catch (e) {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   }
-  // }
 
   Future uploadFile(String path) async {
     String fileName = DateTime.now().millisecondsSinceEpoch.toString();
