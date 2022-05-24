@@ -10,8 +10,25 @@ class WriteService {
       return e.message;
     }
   }
-  static Future<String?> addUser({required String email , required String name, required String phoneno, required String experience,required String cnic}) async {
-    final user = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "experience": experience, "cnic":cnic,  "number_of_projects": '0', "total_earning": '0', "rating": '0', "availability": true};
+
+  static Future<String?> addUser(
+      {required String email,
+      required String name,
+      required String phoneno,
+      required String experience,
+      required String cnic}) async {
+    final user = <String, dynamic>{
+      "email": email,
+      "name": name,
+      "phone_number": phoneno,
+      "experience": experience,
+      "cnic": cnic,
+      "number_of_projects": 0,
+      "total_earning": "0",
+      "rating": 0,
+      "total_reviews": 0,
+      "availability": true
+    };
     try {
       await db.collection("Auditor").add(user);
       return "1";
@@ -20,8 +37,21 @@ class WriteService {
     }
   }
 
-  static Future<String?> addOrganizer({required String email, required String name, required String phoneno, required String businessdetail,required String ntn,required String address}) async {
-    final org = <String, dynamic>{"email": email,"name":name, "phone_number":phoneno, "address": address, "ntn":ntn,  "businessdetail":businessdetail};
+  static Future<String?> addOrganizer(
+      {required String email,
+      required String name,
+      required String phoneno,
+      required String businessdetail,
+      required String ntn,
+      required String address}) async {
+    final org = <String, dynamic>{
+      "email": email,
+      "name": name,
+      "phone_number": phoneno,
+      "address": address,
+      "ntn": ntn,
+      "businessdetail": businessdetail
+    };
     try {
       await db.collection("Organization").add(org);
       return "1";
@@ -32,7 +62,7 @@ class WriteService {
 
   static Future<String?> createProject(
       {required String email,
-        required String title,
+      required String title,
       required String details,
       required String date,
       required String budget,
@@ -49,6 +79,32 @@ class WriteService {
     try {
       await db.collection("Project").add(event);
       return "1";
+    } on FirebaseException catch (e) {
+      return e.message;
+    }
+  }
+
+  static Future<String?> writeReview(String reviewNote, double reviewRating,
+      String auditorID, String organizerID) async {
+    try {
+      await db.collection("reviews").add({
+        "reviewNote": reviewNote,
+        "reviewRating": reviewRating,
+        "auditorID": auditorID,
+        "organizerID": organizerID
+      });
+      var advisor = await db.collection("Auditor").doc(auditorID).get();
+      double rating = double.parse(advisor["rating"].toString());
+      double totalReviews = double.parse(advisor["total_reviews"].toString());
+      double sum = rating * totalReviews;
+      sum += reviewRating;
+      totalReviews++;
+      rating = sum / totalReviews;
+
+      await db
+          .collection("Auditor")
+          .doc(auditorID)
+          .update({"total_reviews": totalReviews, "rating": rating});
     } on FirebaseException catch (e) {
       return e.message;
     }
@@ -90,7 +146,8 @@ class WriteService {
       return e.message;
     }
   }
-static  Future<String?> updateStatus(String id, String value)async{
+
+  static Future<String?> updateStatus(String id, String value) async {
     try {
       db.collection("Project").doc(id).update({"stage": value});
       return "1";
@@ -98,6 +155,7 @@ static  Future<String?> updateStatus(String id, String value)async{
       return e.message;
     }
   }
+
   static Future<String?> approveTicket(String id) async {
     try {
       db.collection("tickets").doc(id).update({"vStatus": "true"});
@@ -110,7 +168,10 @@ static  Future<String?> updateStatus(String id, String value)async{
   static Future<String?> hireAuditor(String id, String auditorId) async {
     try {
       db.collection("Project").doc(id).update({"auditorID": auditorId});
-      db.collection("Auditor").doc(auditorId).update({"number_of_projects": "1"});
+      db
+          .collection("Auditor")
+          .doc(auditorId)
+          .update({"number_of_projects": "1"});
       return "1";
     } on FirebaseException catch (e) {
       return e.message;
@@ -134,10 +195,4 @@ static  Future<String?> updateStatus(String id, String value)async{
       return e.message;
     }
   }
-
-
-
-
 }
-
-
