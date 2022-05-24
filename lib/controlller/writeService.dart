@@ -110,42 +110,6 @@ class WriteService {
     }
   }
 
-  static Future<String?> buyTicket(
-      {required String username,
-      required String trasactionId,
-      required String userBank,
-      required String userEmail,
-      required String Eventprice,
-      required String eventName,
-      required String eventDescription,
-      required String eventDate}) async {
-    final ticket = <String, dynamic>{
-      "userName": username,
-      "eventDescription": eventDescription,
-      "date": eventDate,
-      "userEmail": userEmail,
-      "price": Eventprice,
-      "transactionID": trasactionId,
-      "eventName": eventName,
-      "vStatus": "false",
-      "bStatus": "false"
-    };
-    try {
-      await db.collection("tickets").add(ticket);
-      return "1";
-    } on FirebaseException catch (e) {
-      return e.message;
-    }
-  }
-
-  static Future<String?> approvePayment(String id) async {
-    try {
-      db.collection("tickets").doc(id).update({"bStatus": "true"});
-      return "1";
-    } on FirebaseException catch (e) {
-      return e.message;
-    }
-  }
 
   static Future<String?> updateStatus(String id, String value) async {
     try {
@@ -156,14 +120,6 @@ class WriteService {
     }
   }
 
-  static Future<String?> approveTicket(String id) async {
-    try {
-      db.collection("tickets").doc(id).update({"vStatus": "true"});
-      return "1";
-    } on FirebaseException catch (e) {
-      return e.message;
-    }
-  }
 
   static Future<String?> hireAuditor(String id, String auditorId) async {
     try {
@@ -178,14 +134,6 @@ class WriteService {
     }
   }
 
-  static Future<String?> declinePayment(String id) async {
-    try {
-      db.collection("tickets").doc(id).update({"bStatus": "false"});
-      return "1";
-    } on FirebaseException catch (e) {
-      return e.message;
-    }
-  }
 
   static Future<String?> updateAvailability(String id, bool value) async {
     try {
