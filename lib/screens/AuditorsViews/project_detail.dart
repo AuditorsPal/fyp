@@ -1,3 +1,4 @@
+import 'package:auditorpal/screens/AuditorsViews/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -133,7 +134,10 @@ class _project_detailState extends State<project_detail> {
 
         TableCalendar(
             focusedDay: DateTime.now(), firstDay: DateTime.utc(2010, 10, 16), lastDay: DateTime.utc(2030, 3, 14)),
-
+                
+                
+                
+                  
         SizedBox(height: 40.0),
 
       ]),

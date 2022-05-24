@@ -1,7 +1,7 @@
 import 'package:auditorpal/screens/UserCheck.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../controlller/readService.dart';
+
 import '../../model/userModel.dart';
 import 'package:auditorpal/controlller/authenticationService.dart';
 import 'package:auditorpal/Colors.dart';
