@@ -227,7 +227,7 @@ Future<void> toggleSwitch(bool value) async {
                               ),
                               ListTile(
                                 title: Text("No. of Projects"),
-                                subtitle: Text(profile["number_of_projects"]),
+                                subtitle: Text(profile["number_of_projects"].toString()),
                                 leading: Icon(
                                   Icons.link,
                                   color: Colors.deepPurple,

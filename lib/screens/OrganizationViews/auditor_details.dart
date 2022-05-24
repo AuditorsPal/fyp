@@ -11,7 +11,7 @@ import '../../controlller/readService.dart';
 import '../../model/userModel.dart';
 
 class AuditorDetail extends StatefulWidget {
-  final  auditor_id;
+  final auditor_id;
   const AuditorDetail({Key? key, required this.auditor_id}) : super(key: key);
 
   @override
@@ -307,7 +307,7 @@ class _AuditorDetailState extends State<AuditorDetail> {
                         ),
                         ListTile(
                           title: Text("No. of projects"),
-                          subtitle: Text(profile["number_of_projects"]),
+                          subtitle: Text(profile["number_of_projects"].toString()),
                           leading: Icon(
                             Icons.link,
                             color: Colors.deepPurple,

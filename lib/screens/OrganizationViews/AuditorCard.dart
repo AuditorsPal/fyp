@@ -32,12 +32,14 @@ class _Auditor_listState extends State<Auditor_list> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      child: StreamBuilder<QuerySnapshot> (stream: auditors,
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot>snapshot) {
+      child: StreamBuilder<QuerySnapshot>(
+        stream: auditors,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong",
-              style: const TextStyle(fontSize: 20),);
+            return Text(
+              "Something went wrong",
+              style: const TextStyle(fontSize: 20),
+            );
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SizedBox(
@@ -56,67 +58,62 @@ class _Auditor_listState extends State<Auditor_list> {
                           highlightColor: Colors.grey,
                           enabled: true,
                           child: ListView.builder(
-                            itemBuilder: (_, __) =>
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 10.0),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start,
-                                    children: <Widget>[
-                                      Container(
-                                        width: 48.0,
-                                        height: 48.0,
-                                        color: Colors.white,
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment
-                                              .start,
-                                          children: <Widget>[
-                                            Container(
-                                              width: double.infinity,
-                                              height: 8.0,
-                                              color: Colors.white,
-                                            ),
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 2.0),
-                                            ),
-                                            Container(
-                                              width: double.infinity,
-                                              height: 8.0,
-                                              color: Colors.white,
-                                            ),
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 2.0),
-                                            ),
-                                            Container(
-                                              width: 40.0,
-                                              height: 8.0,
-                                              color: Colors.white,
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                            itemBuilder: (_, __) => Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Container(
+                                    width: 48.0,
+                                    height: 48.0,
+                                    color: Colors.white,
                                   ),
-                                ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.0),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Container(
+                                          width: double.infinity,
+                                          height: 8.0,
+                                          color: Colors.white,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2.0),
+                                        ),
+                                        Container(
+                                          width: double.infinity,
+                                          height: 8.0,
+                                          color: Colors.white,
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 2.0),
+                                        ),
+                                        Container(
+                                          width: 40.0,
+                                          height: 8.0,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                             itemCount: 2,
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ));
           }
-
 
           final data = snapshot.requireData;
           return ListView.builder(
@@ -130,7 +127,7 @@ class _Auditor_listState extends State<Auditor_list> {
                   ),
                   elevation: 4,
                   child: Container(
-                    height: 275,
+                    height: 300,
                     width: 300,
                     margin: EdgeInsets.all(30),
                     child: Column(
@@ -139,64 +136,91 @@ class _Auditor_listState extends State<Auditor_list> {
                           backgroundColor: Color.fromARGB(255, 38, 146, 173),
                           radius: 40.0,
                           child: Text(data.docs[index]["name"][0],
-                              
-                              style: TextStyle(fontSize: 40.0,color:Colors.white )),
+                              style: TextStyle(
+                                  fontSize: 40.0, color: Colors.white)),
                         ),
-                        SizedBox(height: 10,),
-                        Text(data.docs[index]['name'],
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          data.docs[index]['name'],
                           style: TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline,
-                          ),),
-                        SizedBox(height: 10,),
-                        Text("Experience: " + data.docs[index]['experience'],
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),),
-                        SizedBox(height: 15,),
-                        Text("No. of Projects done: " + data.docs[index]['number_of_projects'],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Experience: " + data.docs[index]['experience'],
                           style: TextStyle(
                             fontSize: 16,
-                          ),),
-                        SizedBox(height: 15,),
-
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "No. of Projects done: " +
+                              data.docs[index]['number_of_projects'].toString(),
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        RatingBarIndicator(
+                          rating: double.parse(
+                              data.docs[index]["rating"].toString()),
+                          itemCount: 5,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star_rounded,
+                            color: Colors.amber,
+                            size: 5,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                   AuditorDetail(auditor_id:  data.docs[index].id)));
+                                    builder: (context) => AuditorDetail(
+                                        auditor_id: data.docs[index].id)));
                           },
-
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
                               elevation: 0,
                               padding: EdgeInsets.fromLTRB(20, 12, 20, 12),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(color: Colors.black, width: 2,)
-                              )
-                          ),
-                          child: Text("View Profile",
+                                  side: BorderSide(
+                                    color: Colors.black,
+                                    width: 2,
+                                  ))),
+                          child: Text(
+                            "View Profile",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               color: Colors.black,
-                            ),),
+                            ),
+                          ),
                         )
-
                       ],
                     ),
-
                   ),
                 );
               });
         },
-
       ),
     );
   }
 }
-
