@@ -6,6 +6,7 @@ import '../../Colors.dart';
 import 'package:auditorpal/controlller/readService.dart';
 
 import '../../model/userModel.dart';
+import '../OrganizationViews/SearchPage.dart';
 
 class progress extends StatefulWidget {
   const progress({Key? key}) : super(key: key);
@@ -15,24 +16,15 @@ class progress extends StatefulWidget {
 }
 
 class _progressState extends State<progress> {
-  String id = "";
   int _counter = 0;
   double progressvalue = 0;
   String value = "No progress";
   
-  String email = "";
-    void initState() {
-    email = Provider.of<UserModel>(context, listen: false).email;
-    getIdByEmail();
-  }
 
   
   
-  getIdByEmail() async {
-    id = await ReadService.getOrgIdByEmail(email);
-  }
   dynamic _incrementCounter() {
-      if (progressvalue <= 7) {
+      if (_counter <= 6) {
       progressvalue++;
     }
     if (_counter == 0 && progressvalue == 1) {
@@ -93,7 +85,7 @@ class _progressState extends State<progress> {
     if (progressvalue != 0) {
       progressvalue--;
     }
-    if (_counter == 0) {
+    if (_counter < 0) {
       setState(() {
         value = "No progress";
       });
@@ -162,6 +154,18 @@ class _progressState extends State<progress> {
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
 
     return Scaffold(
+      appBar:  AppBar(
+          centerTitle: true,
+          title: const Text("Auditor"),
+          backgroundColor: Color.fromARGB(255, 38, 146, 173),
+          actions: [
+            IconButton(
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => SearchPage())),
+                icon: Icon(Icons.search)),
+
+          ],
+        ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
