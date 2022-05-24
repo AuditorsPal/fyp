@@ -168,10 +168,12 @@ class WriteService {
   static Future<String?> hireAuditor(String id, String auditorId) async {
     try {
       db.collection("Project").doc(id).update({"auditorID": auditorId});
+
       db
           .collection("Auditor")
           .doc(auditorId)
           .update({"number_of_projects": "1"});
+      
       return "1";
     } on FirebaseException catch (e) {
       return e.message;
